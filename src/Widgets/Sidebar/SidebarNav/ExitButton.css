@@ -1,0 +1,8 @@
+.sidebar__exit {
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   font-weight: 500;
+   margin-left: 35px;
+   margin-bottom: 55px;
+}

@@ -1,0 +1,25 @@
+.sidebar__btn {
+   margin-left: 16px;
+   margin-bottom: 10px;
+   margin-right: 16px;
+}
+
+.sidebar__btn-note {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 219px;
+   padding: 13px 20px;
+   border-radius: 7px;
+   background-color: #000;
+   cursor: pointer;
+   border: 0;
+}
+
+.sidebar__text-btn {
+   margin: 0;
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 500;
+   font-size: 16px;
+   color: #fff;
+}
