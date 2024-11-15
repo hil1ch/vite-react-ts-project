@@ -10,6 +10,8 @@ body {
 
 a {
    font-family: 'Montserrat', sans-serif;
+   text-decoration: none;
+   color: #000;
 }
 
 .container {
@@ -18,13 +20,33 @@ a {
 }
 
 .header {
+   margin-top: 20px;
    display: flex;
    justify-content: space-between;
    align-items: center;
+   margin-bottom: 190px;
 }
 
 .nav__list {
    display: flex;
    align-items: center;
    list-style-type: none;
+}
+
+.nav__item-login {
+   font-weight: 500;
+   margin-right: 35px;
+}
+
+.nav__link-signup {
+   font-weight: 500;
+   background-color: #2B2B2B;
+   border: none;
+   border-radius: 15px;
+   padding: 16px 22px;
+   color: #fff;
+}
+
+.nav__link-signup:hover {
+   background-color: #444444;
 }

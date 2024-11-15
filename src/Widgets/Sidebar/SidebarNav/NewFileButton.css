@@ -24,3 +24,7 @@
    cursor: pointer;
    border: 0;
 }
+
+.sidebar__btn-file:hover {
+   background-color: #444444;
+}

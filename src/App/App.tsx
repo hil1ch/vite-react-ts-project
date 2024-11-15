@@ -1,8 +1,8 @@
-import Sidebar from "../Widgets/Sidebar/Sidebar";
+import StartPage from "../Pages/StartPage/StartPage";
 
 function App() {
   return <div>
-    <Sidebar />
+    <StartPage />
   </div>
 }
 

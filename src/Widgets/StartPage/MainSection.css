@@ -1,0 +1,37 @@
+.section__title {
+   text-align: center;
+   font-size: 65px;
+   font-weight: 500;
+   margin-bottom: 31px;
+}
+
+span {
+   display: block;
+   margin-top: -10px;
+}
+
+.section__subtitle {
+   text-align: center;
+   width: 817px;
+   margin: 0 auto;
+   font-size: 20px;
+   margin-bottom: 52px;
+}
+
+.section__link {
+   display: block;
+   text-align: center;
+   margin: 0 auto;
+   background-color: #2B2B2B;
+   color: #fff;
+   width: 200px;
+   border: none;
+   border-radius: 15px;
+   font-weight: 500;
+   padding-top: 17px;
+   padding-bottom: 17px;
+}
+
+.section__link:hover {
+   background-color: #444444;
+}
