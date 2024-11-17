@@ -1,0 +1,32 @@
+.note__share {
+   display: flex;
+   align-items: center;
+   align-self: end;
+   padding-top: 50px;
+   margin-bottom: 50px;
+   gap: 22px;
+}
+
+.note__share-button {
+   display: flex;
+   align-items: center;
+   border: 0;
+   background-color: #fff;
+   font-size: 16px;
+   font-weight: 500;
+   font-family: 'Montserrat', sans-serif;
+   cursor: pointer;
+}
+
+.note__share-btn img {
+   margin-right: 11px;
+}
+
+.note__share p {
+   font-weight: 500;
+   color: #B3B3B3;
+}
+
+.note__status {
+   font-size: 14px;
+}

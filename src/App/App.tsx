@@ -1,8 +1,8 @@
-import StartPage from "../Pages/StartPage/StartPage";
+import NotePage from "../Pages/NotePage/NotePage";
 
 function App() {
   return <div>
-    <StartPage />
+    <NotePage />
   </div>
 }
 

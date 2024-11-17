@@ -1,0 +1,29 @@
+.note__action-btn {
+   display: flex;
+   align-items: center;
+   border: none;
+   background-color: #fff;
+   cursor: pointer;
+}
+
+.note__action-btn:first-child {
+   margin-top: 24px;
+}
+
+.note__action-btn img {
+   margin-right: 8px;
+}
+
+.note__action-btn p {
+   font-size: 16px;
+   font-weight: 500;
+   font-family: 'Montserrat', sans-serif;
+}
+
+.note__text-btn__save {
+   color: #27AE60;
+}
+
+.note__text-btn__delete {
+   color: #EF0202;
+}

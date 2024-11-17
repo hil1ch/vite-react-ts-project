@@ -1,0 +1,54 @@
+.options__display {
+   display: flex;
+}
+
+.note__add-options {
+   display: flex;
+   align-items: center;
+   gap: 30px;
+}
+
+.add__file input{
+   cursor: pointer;
+}
+
+.add__file-inner {
+   display: flex;
+   align-items: center;
+}
+
+.file__link {
+   display: flex;
+   align-items: center;
+   margin-top: 20px;
+}
+
+.add__tag {
+   display: flex;
+   align-items: center;
+}
+
+.add__file img,
+.add__tag img {
+   margin-right: 8px;
+}
+
+.add__file input,
+.add__tag input {
+   border: none;
+   outline: none;
+   font-size: 16px;
+   font-weight: 500;
+   font-family: 'Montserrat', sans-serif;
+   color: #B3B3B3;
+}
+
+.add__tag input::placeholder {
+   color: #B3B3B3;
+}
+
+.file__delete-button {
+   background-color: #fff;
+   border: none;
+   cursor: pointer;
+}

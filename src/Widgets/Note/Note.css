@@ -1,0 +1,10 @@
+.note {
+   width: 100%;
+   margin: 10px;
+   background-color: #fff;
+   padding-left: 210px;
+   padding-right: 210px;
+   border-radius: 15px;
+   display: flex;
+   flex-direction: column;
+}
