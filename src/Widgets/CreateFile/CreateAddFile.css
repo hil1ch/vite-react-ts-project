@@ -1,0 +1,29 @@
+.add__file {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: 10px;
+}
+
+.add__file input{
+   cursor: pointer;
+   border: none;
+   outline: none;
+   font-size: 14px;
+   font-weight: 500;
+   font-family: 'Montserrat', sans-serif;
+   color: #B3B3B3;
+}
+
+.add__file-inner {
+   display: flex;
+}
+
+.add__file-img {
+   margin-right: 8px;
+}
+
+.file__delete-button {
+   background-color: #fff;
+   border: none;
+   cursor: pointer;
+}

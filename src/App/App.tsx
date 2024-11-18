@@ -1,8 +1,8 @@
-import NotePage from "../Pages/NotePage/NotePage";
+import CreateFilePage from "../Pages/CreateFilePage/CreateFilePage";
 
 function App() {
   return <div>
-    <NotePage />
+    <CreateFilePage />
   </div>
 }
 

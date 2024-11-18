@@ -1,0 +1,48 @@
+.tag-and-share {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.add__tag {
+   display: flex;
+   align-items: center;
+}
+
+.add__tag img {
+   margin-right: 6px;
+}
+
+.add__tag input {
+   border: none;
+   outline: none;
+   font-size: 14px;
+   font-weight: 500;
+   font-family: 'Montserrat', sans-serif;
+   color: #B3B3B3;
+}
+
+.add__tag input::placeholder {
+   color: #B3B3B3;
+}
+
+.file__share-button {
+   padding: 0;
+   display: flex;
+   align-items: center;
+   background-color: #fff;
+   border: none;
+   cursor: pointer;
+}
+
+.file__share-button img {
+   margin-right: 8px;
+}
+
+.file__text-btn {
+   margin: 0;
+   font-family: 'Montserrat', sans-serif;
+   color: #B3B3B3;
+   font-size: 14px;
+   font-weight: 500;
+}
