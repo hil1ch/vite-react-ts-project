@@ -1,8 +1,8 @@
-import CreateFilePage from "../Pages/CreateFilePage/CreateFilePage";
+import EditFilePage from "../Pages/EditFilePage/EditFilePage";
 
 function App() {
   return <div>
-    <CreateFilePage />
+    <EditFilePage />
   </div>
 }
 

@@ -1,0 +1,33 @@
+.file__title {
+   margin-bottom: 10px;
+}
+
+.file__title input {
+   border: none;
+   width: 100%;
+   outline: none;
+   font-size: 30px;
+   font-weight: 700;
+}
+
+.file__title input::placeholder {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 30px;
+   font-weight: 700;
+   color: #B3B3B3;
+}
+
+.file__text textarea {
+   border: none;
+   outline: none;
+   font-size: 16px;
+   width: 100%;
+   resize: none;
+   margin-bottom: 100px;
+}
+
+.file__text textarea::placeholder {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   color: #B3B3B3;
+}

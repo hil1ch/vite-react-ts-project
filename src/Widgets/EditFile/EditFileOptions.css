@@ -1,0 +1,43 @@
+.add__tag {
+   display: flex;
+   align-items: center;
+}
+
+.add__tag img {
+   margin-right: 6px;
+}
+
+.add__tag input {
+   border: none;
+   outline: none;
+   font-size: 14px;
+   font-weight: 500;
+   font-family: 'Montserrat', sans-serif;
+   color: #B3B3B3;
+}
+
+.add__tag input::placeholder {
+   color: #B3B3B3;
+}
+
+.file__edit-options {
+   display: flex;
+   justify-content: space-between;
+}
+
+.file__action-edit-btn__delete {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 14px;
+   font-weight: 500;
+   color: #EF0202;
+   display: flex;
+   align-items: center;
+   padding: 0;
+   background-color: #fff;
+   border: none;
+   cursor: pointer;
+}
+
+.file__action-edit-btn__delete img {
+   margin-right: 8px;
+}

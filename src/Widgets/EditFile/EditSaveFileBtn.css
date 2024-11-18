@@ -1,0 +1,17 @@
+.file__action-edit-btn__save {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   font-weight: 500;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding-top: 15px;
+   padding-bottom: 15px;
+   border-radius: 10px;
+   border: none;
+   background-color: #2B2B2B;
+   color: #fff;
+   cursor: pointer;
+   margin-top: 23px;
+}

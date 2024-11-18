@@ -1,4 +1,4 @@
-import CloseFileBtn from './CloseFileBtn';
+import CloseFileBtn from '../../Shared/CloseFileBtn/CloseFileBtn';
 import CreateFileInner from './CreateFileInner';
 import './CreateFile.css';
 import CreateAddFile from './CreateAddFile';
