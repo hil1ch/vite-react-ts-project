@@ -1,0 +1,204 @@
+.main {
+   background-color: #fff;
+   margin: 10px;
+   width: 100%;
+   border-radius: 15px;
+}
+
+.main__page-inner {
+   padding-left: 47px;
+   padding-right: 47px;
+   padding-bottom: 60px;
+}
+
+.search__input {
+   margin-top: 37px;
+   border: 1px solid #D4D4D4;
+   border-radius: 10px;
+   padding: 16px 25px;
+   width: 535px;
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 500;
+   font-size: 16px;
+   margin-bottom: 50px;
+}
+
+.search__input::placeholder {
+   font-weight: 500;
+   color: #B3B3B3;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+}
+
+.main__page-notes {
+   margin-bottom: 47px;
+}
+
+.open__notes-title__inner {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.open__notes-title {
+   font-size: 20px;
+   font-weight: 500;
+   margin-bottom: 10px;
+}
+
+.open__notes-link,
+.open__files-link {
+   font-size: 16px;
+   font-weight: 500;
+   color: #553BF1;
+}
+
+.open__notes-description {
+   font-size: 16px;
+   font-weight: 500;
+   color: #B3B3B3;
+   margin-bottom: 23px;
+}
+
+.main__page-note {
+   width: 260px;
+   border: 1px solid #DDDDDD;
+   border-radius: 15px;
+   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.15);
+   cursor: pointer;
+}
+
+.main__page-note__inner {
+   padding: 18px;
+}
+
+.note__inner-description {
+   font-size: 12px;
+   color: #B3B3B3;
+   text-align: justify;
+   margin-bottom: 27px;
+}
+
+.note__inner-title {
+   margin: 0;
+   font-size: 15px;
+   font-weight: 500;
+   margin-bottom: 20px;
+}
+
+.note__inner-username {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.username__inner {
+   display: flex;
+   align-items: center;
+}
+
+.username__inner img {
+   margin-right: 4px;
+}
+
+.note__user-email {
+   font-size: 10px;
+   color: #B3B3B3;
+}
+
+.note__tag-inner {
+   display: flex;
+   align-items: center;
+   background-color: #F0F0F0;
+   border: none;
+   border-radius: 8px;
+   padding: 4px;
+}
+
+.note__tag-inner img{
+   margin-right: 4px;
+}
+
+.note__tag-name {
+   font-size: 10px;
+   color: #B3B3B3;
+}
+
+.open__files-title__inner {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.open__files-title {
+   font-size: 20px;
+   font-weight: 500;
+   margin-bottom: 23px;
+}
+
+.main__page-file {
+   padding: 21px 25px;
+   border: 1px solid #D4D4D4;
+   border-radius: 15px;
+   width: 100%;
+   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.15);
+   cursor: pointer;
+}
+
+.main__page-file__inner {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   
+}
+
+.file__inner-text {
+   flex: 1;
+   margin-left: 19px;
+}
+
+.file__inner-title {
+   font-size: 15px;
+   font-weight: 500;
+   margin: 0;
+   margin-bottom: 4px;
+}
+
+.file__inner-description {
+   font-size: 12px;
+   color: #B3B3B3;
+}
+
+.file__inner-username {
+   display: flex;
+   align-items: center;
+   margin-right: 315px;
+}
+
+.file__inner-username img {
+   margin-right: 6px;
+}
+
+.file__user-email {
+   font-size: 14px;
+   color: #B3B3B3;
+}
+
+.file__tag-inner {
+   display: flex;
+   align-items: center;
+   background-color: #F0F0F0;
+   border: none;
+   border-radius: 8px;
+   padding: 5px;
+}
+
+.file__tag-inner img {
+   margin-right: 4px;
+}
+
+.file__tag-name {
+   font-size: 12px;
+   color: #B3B3B3;
+}
+

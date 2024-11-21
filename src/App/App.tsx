@@ -1,8 +1,8 @@
-import EditFilePage from "../Pages/EditFilePage/EditFilePage";
+import ApproveDeleteNote from "../Widgets/ApproveDeleteNote/ApproveDeleteNote";
 
 function App() {
   return <div>
-    <EditFilePage />
+    <ApproveDeleteNote />
   </div>
 }
 
