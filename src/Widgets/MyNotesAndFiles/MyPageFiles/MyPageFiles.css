@@ -1,0 +1,11 @@
+.my__files-title__inner {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.my__files-title {
+   font-size: 20px;
+   font-weight: 500;
+   margin-bottom: 23px;
+}
