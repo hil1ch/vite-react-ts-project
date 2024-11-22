@@ -1,8 +1,8 @@
-import MyNotesAndFilesPage from "../Pages/MyNotesAndFilesPage/MyNotesAndFilesPage";
+import ApproveExit from "../Widgets/ApproveExit/ApproveExit";
 
 function App() {
   return <div>
-    <MyNotesAndFilesPage />
+    <ApproveExit />
   </div>
 }
 
