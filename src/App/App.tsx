@@ -1,8 +1,8 @@
-import ApproveDeleteNote from "../Widgets/ApproveDeleteNote/ApproveDeleteNote";
+import MyNotesAndFilesPage from "../Pages/MyNotesAndFilesPage/MyNotesAndFilesPage";
 
 function App() {
   return <div>
-    <ApproveDeleteNote />
+    <MyNotesAndFilesPage />
   </div>
 }
 
