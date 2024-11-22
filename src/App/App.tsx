@@ -1,8 +1,8 @@
-import ApproveExit from "../Widgets/ApproveExit/ApproveExit";
+import MainPage from "../Pages/MainPage/MainPage";
 
 function App() {
   return <div>
-    <ApproveExit />
+    <MainPage />
   </div>
 }
 

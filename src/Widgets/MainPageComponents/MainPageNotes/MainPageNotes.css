@@ -27,3 +27,9 @@
    color: #B3B3B3;
    margin-bottom: 23px;
 }
+
+.main__page-notes-list {
+   display: flex;
+   gap: 15px;
+   flex-wrap: wrap;
+}

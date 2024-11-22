@@ -5,6 +5,11 @@
    width: 100%;
    box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.15);
    cursor: pointer;
+   margin-bottom: 15px;
+}
+
+.my__page-file:last-child {
+   margin-bottom: 0;
 }
 
 .my__page-file__inner {
