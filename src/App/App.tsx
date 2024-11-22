@@ -1,8 +1,8 @@
-import MyNotesAndFilesPage from "../Pages/MyNotesAndFilesPage/MyNotesAndFilesPage";
+import MainPage from "../Pages/MainPage/MainPage";
 
 function App() {
   return <div>
-    <MyNotesAndFilesPage />
+    <MainPage />
   </div>
 }
 

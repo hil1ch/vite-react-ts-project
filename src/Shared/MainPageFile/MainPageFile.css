@@ -1,0 +1,65 @@
+.main__page-file {
+   padding: 21px 25px;
+   border: 1px solid #D4D4D4;
+   border-radius: 15px;
+   width: 100%;
+   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.15);
+   cursor: pointer;
+}
+
+.main__page-file__inner {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   
+}
+
+.file__inner-text {
+   flex: 1;
+   margin-left: 19px;
+}
+
+.file__inner-title {
+   font-size: 15px;
+   font-weight: 500;
+   margin: 0;
+   margin-bottom: 4px;
+}
+
+.file__inner-description {
+   font-size: 12px;
+   color: #B3B3B3;
+}
+
+.file__inner-username {
+   display: flex;
+   align-items: center;
+   margin-right: 315px;
+}
+
+.file__inner-username img {
+   margin-right: 6px;
+}
+
+.file__user-email {
+   font-size: 14px;
+   color: #B3B3B3;
+}
+
+.file__tag-inner {
+   display: flex;
+   align-items: center;
+   background-color: #F0F0F0;
+   border: none;
+   border-radius: 8px;
+   padding: 5px;
+}
+
+.file__tag-inner img {
+   margin-right: 4px;
+}
+
+.file__tag-name {
+   font-size: 12px;
+   color: #B3B3B3;
+}

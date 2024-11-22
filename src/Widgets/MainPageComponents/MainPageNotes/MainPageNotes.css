@@ -1,0 +1,29 @@
+.main__page-notes {
+   margin-bottom: 47px;
+}
+
+.open__notes-title__inner {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.open__notes-title {
+   font-size: 20px;
+   font-weight: 500;
+   margin-bottom: 10px;
+}
+
+.open__notes-link,
+.open__files-link {
+   font-size: 16px;
+   font-weight: 500;
+   color: #553BF1;
+}
+
+.open__notes-description {
+   font-size: 16px;
+   font-weight: 500;
+   color: #B3B3B3;
+   margin-bottom: 23px;
+}

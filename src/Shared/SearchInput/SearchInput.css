@@ -1,0 +1,18 @@
+.search__input {
+   margin-top: 37px;
+   border: 1px solid #D4D4D4;
+   border-radius: 10px;
+   padding: 16px 25px;
+   width: 535px;
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 500;
+   font-size: 16px;
+   margin-bottom: 50px;
+}
+
+.search__input::placeholder {
+   font-weight: 500;
+   color: #B3B3B3;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+}
