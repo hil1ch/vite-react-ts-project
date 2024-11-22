@@ -1,8 +1,8 @@
-import MainPage from "../Pages/MainPage/MainPage";
+import PasswordInputPage from "../Pages/PasswordInputPage/PasswordInputPage";
 
 function App() {
   return <div>
-    <MainPage />
+    <PasswordInputPage />
   </div>
 }
 
