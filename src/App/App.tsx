@@ -1,8 +1,8 @@
-import ShareModal from "../Shared/ShareModal/ShareModal";
+import OpenFilesPage from "../Pages/OpenFilesPage/OpenFilesPage";
 
 function App() {
   return <div>
-    <ShareModal />
+    <OpenFilesPage />
   </div>
 }
 

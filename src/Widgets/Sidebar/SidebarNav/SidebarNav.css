@@ -1,4 +1,13 @@
 .sidebar__nav {
    flex: 1;
-   margin-top: 79px;
+   margin-top: 60px;
+}
+
+.sidebar__common,
+.sidebar__own {
+   margin-left: 35px;
+   margin-bottom: 20px;
+   font-size: 14px;
+   font-weight: 500;
+   color: #8A8A8A;
 }

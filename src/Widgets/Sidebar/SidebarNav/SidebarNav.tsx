@@ -1,16 +1,22 @@
-import MainButton from './MainButton';
+import MyNotes from './MyNotesLink';
 import NewFileButton from './NewFileButton';
 import NewNoteButton from './NewNoteButton';
-import NotesAndFilesButton from './NotesAndFilesButton';
+import OpenFiles from './OpenFilesLink';
+import OpenNotes from './OpenNotesLink';
+import MyFiles from './MyFilesLink';
 import './SidebarNav.css';
 
 function SidebarNav() {
    return (
       <div className="sidebar__nav">
-         <MainButton />
+         <p className='sidebar__common'>Общее хранилище</p>
+         <OpenNotes />
+         <OpenFiles />
          <NewNoteButton />
          <NewFileButton />
-         <NotesAndFilesButton />
+         <p className="sidebar__own">Личное хранилище</p>
+         <MyNotes />
+         <MyFiles />
       </div>
    )
 }
