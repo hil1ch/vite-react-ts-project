@@ -1,8 +1,8 @@
-import PasswordInputPage from "../Pages/PasswordInputPage/PasswordInputPage";
+import ShareModal from "../Shared/ShareModal/ShareModal";
 
 function App() {
   return <div>
-    <PasswordInputPage />
+    <ShareModal />
   </div>
 }
 
