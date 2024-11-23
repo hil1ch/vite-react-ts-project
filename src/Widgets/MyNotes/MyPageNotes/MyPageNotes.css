@@ -2,12 +2,6 @@
    margin-bottom: 47px;
 }
 
-.my__notes-title__inner {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-}
-
 .my__notes-title {
    font-size: 20px;
    font-weight: 500;

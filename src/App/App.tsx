@@ -1,8 +1,8 @@
-import OpenFilesPage from "../Pages/OpenFilesPage/OpenFilesPage";
+import MyFilesPage from "../Pages/MyFilesPage/MyFilesPage";
 
 function App() {
   return <div>
-    <OpenFilesPage />
+    <MyFilesPage />
   </div>
 }
 
