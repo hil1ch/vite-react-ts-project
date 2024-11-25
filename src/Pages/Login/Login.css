@@ -74,43 +74,13 @@ body {
    font-weight: 500;
    color: #ffff;
    background-color: black;
+   border: none;
    border-radius: 10px;
    padding: 16px 253px;
    cursor: pointer;
    margin-bottom: 28px;
 }
 
-.line-or-line {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   margin-bottom: 25px;
- }
- 
- .line {
-   width: 253px;
-   height: 1px;
-   background-color: #D4D4D4;
- }
- 
- .or-text {
-   padding: 0 8px;
-   color: #D4D4D4;
- }
-
-.login__google {
-   display: flex;
-   justify-content: center;
-   border: 1px solid #D4D4D4;
-   border-radius: 10px;
-   width: 566px;
-   margin: 0 auto;
-}
-
-.login__link {
-   padding-top: 19px;
-   padding-bottom: 19px;
-   padding-right: 19px;
-   padding-left: 8px;
-
+.login__btn:hover {
+   background-color: #444444;
 }
