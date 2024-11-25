@@ -8,6 +8,11 @@
    gap: 30px;
 }
 
+.add__file {
+   margin: 0;
+   margin-right: 10px;
+}
+
 .add__file input{
    cursor: pointer;
 }
@@ -15,12 +20,6 @@
 .add__file-inner {
    display: flex;
    align-items: center;
-}
-
-.file__link {
-   display: flex;
-   align-items: center;
-   margin-top: 20px;
 }
 
 .add__tag {
@@ -45,10 +44,4 @@
 
 .add__tag input::placeholder {
    color: #B3B3B3;
-}
-
-.file__delete-button {
-   background-color: #fff;
-   border: none;
-   cursor: pointer;
 }

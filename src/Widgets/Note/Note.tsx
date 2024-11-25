@@ -5,10 +5,12 @@ import ShareButton from './ShareButton';
 
 function Note() {
    return (
-      <div className="note">
-         <ShareButton /> 
-         <NoteInner />
-         <NoteOptions />
+      <div className="modal__overlay">
+         <div className='note'>
+            <ShareButton /> 
+            <NoteInner />
+            <NoteOptions />
+         </div>
       </div>
    )
 }
