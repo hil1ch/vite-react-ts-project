@@ -1,10 +1,11 @@
+import { NavLink } from 'react-router-dom';
 import './OpenFilesLink.css';
 
 function OpenFilesLink() {
    return (
-      <div className="sidebar__item active">
+      <div className="sidebar__item">
          <img src="src\images\file.svg" alt="" className="sidebar__img"></img>
-         <a className="sidebar__item-link" href="#">Файлы</a>
+         <NavLink className="sidebar__item-link" to="/openFiles">Файлы</NavLink>
       </div>
    )
 }

@@ -1,10 +1,11 @@
+import { NavLink } from 'react-router-dom';
 import './OpenNotesLink.css';
 
 function OpenNotesLink() {
    return (
-      <div className="sidebar__item active">
+      <div className="sidebar__item">
          <img src="src\images\notes.svg" alt="" className="sidebar__img"></img>
-         <a className="sidebar__item-link" href="#">Заметки</a>
+         <NavLink className="sidebar__item-link" to="/openNotes">Заметки</NavLink>
       </div>
    )
 }

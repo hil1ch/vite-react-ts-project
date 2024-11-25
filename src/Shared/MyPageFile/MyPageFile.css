@@ -49,6 +49,7 @@
 .my__file-user__email {
    font-size: 14px;
    color: #B3B3B3;
+   margin: 0;
 }
 
 .my__file-tag__inner {
@@ -67,4 +68,5 @@
 .my__file-tag__name {
    font-size: 12px;
    color: #B3B3B3;
+   margin: 0;
 }

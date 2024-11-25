@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 function Header() {
@@ -7,8 +8,8 @@ function Header() {
             <img className="logo" src="src\images\start-logo.png"></img>
             <nav className="nav">
                <ul className="nav__list">
-                  <li className="nav__item-login"><a href="#" className="nav__link-login">Войти</a></li>
-                  <li className="nav__item-signup"><a href="#" className="nav__link-signup">Зарегистрироваться</a></li>
+                  <li className="nav__item-login"><Link to="/login" className="nav__link-login">Войти</Link></li>
+                  <li className="nav__item-signup"><Link to="/registration" className="nav__link-signup">Зарегистрироваться</Link></li>
                </ul>
             </nav>
          </div>

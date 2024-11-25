@@ -1,10 +1,11 @@
+import { NavLink } from 'react-router-dom';
 import './MyFilesLink.css';
 
 function MyFilesLink() {
    return (
-   <div className="sidebar__item active">
+   <div className="sidebar__item">
       <img src="src\images\file.svg" alt="" className="sidebar__img"></img>
-      <a className="sidebar__item-link" href="#">Мои файлы</a>
+      <NavLink className="sidebar__item-link" to="/myFiles">Мои файлы</NavLink>
    </div>
 )}
 

@@ -42,6 +42,7 @@
 .note__user-email {
    font-size: 10px;
    color: #B3B3B3;
+   margin: 0;
 }
 
 .note__tag-inner {
@@ -60,4 +61,5 @@
 .note__tag-name {
    font-size: 10px;
    color: #B3B3B3;
+   margin: 0;
 }
