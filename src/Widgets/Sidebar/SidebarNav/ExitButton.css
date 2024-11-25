@@ -6,3 +6,17 @@
    margin-left: 35px;
    margin-bottom: 55px;
 }
+
+.sidebar__exit img {
+   margin-right: 10px;
+}
+
+.sidebar__item-btn {
+   padding: 0;
+   background-color: #D4D4D4;
+   border: none;
+   font-size: 16px;
+   font-weight: 500;
+   font-family: 'Montserrat', sans-serif;
+   cursor: pointer;
+}
