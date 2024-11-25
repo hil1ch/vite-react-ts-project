@@ -1,5 +1,6 @@
-.note__share {
+.note__share-inner {
    display: flex;
+   justify-content: space-between;
    align-items: center;
    align-self: end;
    padding-top: 50px;
@@ -22,7 +23,7 @@
    margin-right: 11px;
 }
 
-.note__share p {
+.note__share-inner p {
    font-weight: 500;
    color: #B3B3B3;
 }
