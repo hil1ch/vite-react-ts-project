@@ -1,15 +1,15 @@
 import './ExitButton.css';
 
 interface IExitButtonProps {
-   openExitModal: () => void;
+   openModal: () => void;
  }
 
-function ExitButton({openExitModal}: IExitButtonProps) {
+function ExitButton({openModal}: IExitButtonProps) {
 
    return (
       <div className="sidebar__exit">
          <img src="src\images\exit.svg" alt="" className="sidebar__img"></img>
-         <button type='button' className="sidebar__item-btn" onClick={openExitModal}>Выход</button>
+         <button type='button' className="sidebar__item-btn" onClick={openModal}>Выход</button>
       </div>
    )
 }

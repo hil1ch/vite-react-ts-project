@@ -15,8 +15,8 @@ function Sidebar() {
             <p className="profile__name">Email пользователя</p>
          </div>
          <SidebarNav />
-         <ExitButton openExitModal={openModal}/>
-         {isOpenModal && <ApproveExit closeExitModal={closeModal} />}
+         <ExitButton openModal={openModal}/>
+         {isOpenModal && <ApproveExit closeModal={closeModal} />}
       </div>
 )};
 

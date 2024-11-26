@@ -5,12 +5,16 @@ import CreateAddFile from './CreateAddFile';
 import CreateTagAndShare from './CreateTagAndShare';
 import CreateSaveFileBtn from './CreateSaveFileBtn';
 
-function CreateFile() {
+interface ICreateFileProps {
+   closeModal: () => void;
+ }
+
+function CreateFile({closeModal}: ICreateFileProps) {
    return (
       <div className="create__file">
          <div className="modal__overlay">
             <section className="file__modal-inner">
-               <CloseFileBtn />
+               <CloseFileBtn closeModal={closeModal}/>
                <CreateFileInner />
                <CreateAddFile />
                <CreateTagAndShare />
