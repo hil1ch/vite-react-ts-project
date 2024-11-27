@@ -9,7 +9,6 @@ function NoteAddOptions() {
                   <img src="src\images\add-file.svg" alt="" className="add__file-img"></img>
                   <input type="file" className="add__file-input"></input>
                </div>
-               
             </div>
          </div>
          <div className="add__tag">

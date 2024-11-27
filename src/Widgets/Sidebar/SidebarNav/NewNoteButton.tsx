@@ -1,23 +1,16 @@
-import { useState } from 'react';
 import './NewNoteButton.css';
-import NotePage from '../../../Pages/NotePage/NotePage';
 
+interface INewNoteButtonProps {
+   onClick: () => void; // Пропс для вызова открытия модального окна
+ }
 
-function NewNoteButton() {
-
-   const [isNoteOpen, setIsNoteOpen] = useState(false);
-
-   const openNoteClick = () => {
-      setIsNoteOpen(true);
-    };
-
+function NewNoteButton({onClick}: INewNoteButtonProps) {
    return (
    <div className="sidebar__btn">
-      <button className="sidebar__btn-note" onClick={openNoteClick}>
+      <button className="sidebar__btn-note" onClick={onClick}>
          <img src="src\images\new-note.svg" alt="" className="sidebar__img"></img>
          <p className="sidebar__text-btn">Новая заметка</p>
       </button>
-      {isNoteOpen && <NotePage />} 
    </div>
 )}
 

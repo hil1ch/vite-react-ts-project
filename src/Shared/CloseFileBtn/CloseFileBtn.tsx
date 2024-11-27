@@ -1,7 +1,7 @@
 import './CloseFileBtn.css';
 
 interface ICloseFileBtnProps {
-   closeModal: () => void;
+   closeModal?: () => void;
  }
 
 function CloseFileBtn({closeModal}: ICloseFileBtnProps) {

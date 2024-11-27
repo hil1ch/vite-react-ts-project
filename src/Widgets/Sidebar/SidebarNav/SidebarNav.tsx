@@ -5,6 +5,7 @@ import NewNoteButton from './NewNoteButton';
 import OpenFiles from './OpenFilesLink';
 import OpenNotes from './OpenNotesLink';
 import MyFiles from './MyFilesLink';
+import Note from '../../Note/Note';
 import CreateFile from '../../CreateFile/CreateFile';
 import './SidebarNav.css';
 
@@ -17,12 +18,13 @@ function SidebarNav() {
          <p className='sidebar__common'>Общее хранилище</p>
          <OpenNotes />
          <OpenFiles />
-         <NewNoteButton />
-         <NewFileButton onClick={openModal}/>
+         <NewNoteButton onClick={() => openModal('note')}/>
+         <NewFileButton onClick={() => openModal('file')}/>
          <p className="sidebar__own">Личное хранилище</p>
          <MyNotes />
          <MyFiles />
-         {isOpenModal && <CreateFile closeModal={closeModal}/>}
+         {isOpenModal === 'note' && <Note closeModal={closeModal} />}
+         {isOpenModal === 'file' && <CreateFile closeModal={closeModal} />}
       </div>
    )
 }

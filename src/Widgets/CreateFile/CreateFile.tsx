@@ -6,7 +6,7 @@ import CreateTagAndShare from './CreateTagAndShare';
 import CreateSaveFileBtn from './CreateSaveFileBtn';
 
 interface ICreateFileProps {
-   closeModal: () => void;
+   closeModal?: () => void;
  }
 
 function CreateFile({closeModal}: ICreateFileProps) {
