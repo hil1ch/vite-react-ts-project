@@ -1,4 +1,4 @@
-import MyPageNote from '../../../Shared/MyPageNote/MyPageNote';
+import MyPageNote from '../../../Shared/UI/MyPageNote/MyPageNote';
 import './MyPageNotes.css';
 
 function MyPageNotes() {

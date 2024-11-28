@@ -1,4 +1,4 @@
-import MyPageFile from '../../../Shared/MyPageFile/MyPageFile';
+import MyPageFile from '../../../Shared/UI/MyPageFile/MyPageFile';
 import './MyPageFiles.css';
 
 function MyPageFiles() {

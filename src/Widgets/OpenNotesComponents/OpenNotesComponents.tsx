@@ -1,4 +1,4 @@
-import SearchInput from "../../Shared/SearchInput/SearchInput";
+import SearchInput from "../../Shared/UI/SearchInput/SearchInput";
 import OpenNotes from "./MainPageNotes/OpenNotes";
 import "./OpenNotesComponents.css";
 
