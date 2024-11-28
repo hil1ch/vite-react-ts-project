@@ -1,4 +1,4 @@
-import MainPageFile from '../../../Shared/MainPageFile/MainPageFile';
+import MainPageFile from '../../../Entities/MainPageFile/MainPageFile';
 import './OpenFiles.css';
 
 function OpenFiles() {

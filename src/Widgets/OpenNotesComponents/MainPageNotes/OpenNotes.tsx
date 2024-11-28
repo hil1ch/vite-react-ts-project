@@ -1,4 +1,4 @@
-import MainPageNote from "../../../Shared/MainPageNote/MainPageNote";
+import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import "./OpenNotes.css";
 
 function OpenNotes() {
