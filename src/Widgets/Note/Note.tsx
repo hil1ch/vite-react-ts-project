@@ -5,6 +5,7 @@ import NoteOptions from './NoteOptions';
 import ShareButton from './ShareButton';
 import CloseFileBtn from '../../Shared/CloseFileBtn/CloseFileBtn';
 import ShareModal from '../../Shared/ShareModal/ShareModal';
+import ApproveDeleteNote from '../ApproveDeleteNote/ApproveDeleteNote';
 
 interface ICreateNoteProps {
    closeModal?: () => void; // Пропс для закрытия модального окна
@@ -20,8 +21,9 @@ function Note({closeModal}: ICreateNoteProps) {
             <CloseFileBtn closeModal={closeModal}/> 
             <ShareButton openModal={openModal}/> 
             <NoteInner />
-            <NoteOptions />
+            <NoteOptions openModal={() => openModal('approveDelete')}/>
             {isOpenModal === 'share' && <ShareModal closeModal={closeShareModal} />}
+            {isOpenModal === 'approveDelete' && <ApproveDeleteNote closeModal={closeShareModal} />}
          </div>
       </div>
    )

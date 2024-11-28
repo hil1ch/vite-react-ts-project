@@ -1,15 +1,14 @@
 .options__display {
    display: flex;
+   align-items: end;
 }
 
 .note__add-options {
    display: flex;
    align-items: center;
-   gap: 30px;
 }
 
 .add__file {
-   margin: 0;
    margin-right: 10px;
 }
 

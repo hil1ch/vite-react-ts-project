@@ -2,11 +2,15 @@ import NoteActions from './NoteActions';
 import NoteAddOptions from './NoteAddOptions';
 import './NoteOptions.css';
 
-function NoteOptions() {
+interface INoteOptionsProps {
+   openModal: (type: string) => void; // Пропс для открытия модального окна
+ }
+
+function NoteOptions({openModal}: INoteOptionsProps) {
    return (
       <div className="note__options">
          <NoteAddOptions />        
-         <NoteActions />
+         <NoteActions openModal={openModal}/>
       </div>
    )
 }

@@ -1,7 +1,6 @@
 .add__file {
    display: flex;
    justify-content: space-between;
-   margin-bottom: 10px;
 }
 
 .add__file input{
