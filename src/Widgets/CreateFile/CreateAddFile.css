@@ -1,9 +1,11 @@
-.add__file {
+.create__add-file {
    display: flex;
    justify-content: space-between;
+   align-items: center;
+   margin-bottom: 10px;
 }
 
-.add__file input{
+.create__add-file input{
    cursor: pointer;
    border: none;
    outline: none;
@@ -13,11 +15,12 @@
    color: #B3B3B3;
 }
 
-.add__file-inner {
+.create__add-file__inner {
    display: flex;
+   align-items: center;
 }
 
-.add__file-img {
+.create__add-file__img {
    margin-right: 8px;
 }
 
