@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './NoteInner.css';
 
-const MAX_NOTE_TITLE_LENGTH = 25;
+const MAX_NOTE_TITLE_LENGTH = 30;
 
 function NoteInner() {
 
@@ -27,7 +27,7 @@ function NoteInner() {
                </input>
             </div>
             <div className="note__text">
-               <textarea className="input__note-text" placeholder="Текст"></textarea>
+               <textarea className="input__note-text" placeholder="Текст" required></textarea>
          </div>
       </div>
    )

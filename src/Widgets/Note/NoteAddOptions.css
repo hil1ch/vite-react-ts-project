@@ -31,8 +31,7 @@
    margin-right: 8px;
 }
 
-.add__file input,
-.add__tag input {
+.add__file input {
    border: none;
    outline: none;
    font-size: 16px;
@@ -41,6 +40,24 @@
    color: #B3B3B3;
 }
 
-.add__tag input::placeholder {
+.tag__title {
+   font-family: 'Montserrat', sans-serif;
    color: #B3B3B3;
+   font-size: 14px;
+   font-weight: 500;
+   margin-right: 8px;
+}
+
+.tags__list {
+   border-radius: 3px;
+   color: #B3B3B3;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 14px;
+   font-weight: 500;
+}
+
+.tags__list option {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 14px;
+   font-weight: 500;
 }

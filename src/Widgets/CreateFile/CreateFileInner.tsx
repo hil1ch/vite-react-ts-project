@@ -39,7 +39,8 @@ function CreateFileInner() {
                <textarea className="input__file-text" 
                placeholder="Описание (до 50 символов)"
                value={fileText}
-               onChange={handleFileTextChange}>
+               onChange={handleFileTextChange}
+               required>
                </textarea>
             </div>
       </div>

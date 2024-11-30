@@ -1,0 +1,11 @@
+.file__link {
+   display: flex;
+   align-items: center;
+   margin-top: 20px;
+}
+
+.file__delete-button {
+   background-color: #fff;
+   border: none;
+   cursor: pointer;
+}
