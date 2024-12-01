@@ -12,7 +12,7 @@ function Sidebar() {
       <div className="sidebar">
          <div className="sidebar__profile">
             <img src="src\images\profile.svg" alt="" className="profile__img"></img>
-            <p className="profile__name">Email пользователя</p>
+            <p className="profile__name">ilya.panarin14@gmail.com</p>
          </div>
          <SidebarNav />
          <ExitButton openModal={openModal}/>
