@@ -65,8 +65,13 @@ body {
    border: none;
    border-radius: 10px;
    cursor: pointer;
+   margin-bottom: 20px;
 }
 
 .registration__btn:hover {
    background-color: #444444;
+}
+
+.has__account {
+   color: #553BF1;
 }
