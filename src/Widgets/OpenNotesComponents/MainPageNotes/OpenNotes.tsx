@@ -1,5 +1,7 @@
 import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import "./OpenNotes.css";
+import NOTES_DATA from "../../../Shared/consts/NotesData";
+import PlaceholderNotePageImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
 
 function OpenNotes() {
   return (
@@ -11,7 +13,13 @@ function OpenNotes() {
         Заметки, созданные другими пользователями
       </p>
       <div className="main__page-notes-list">
-        <MainPageNote />
+        {NOTES_DATA.length > 0 ? (
+          NOTES_DATA.map((note, index) => (
+            <MainPageNote key={index} {...note} />
+          ))
+        ) : (
+          <PlaceholderNotePageImage />
+        )}
       </div>
     </div>
   );

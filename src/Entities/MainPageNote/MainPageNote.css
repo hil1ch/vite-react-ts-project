@@ -15,6 +15,9 @@
    color: #B3B3B3;
    text-align: justify;
    margin-bottom: 27px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 
 .note__inner-title {
@@ -40,9 +43,13 @@
 }
 
 .note__user-email {
+   max-width: 110px;
    font-size: 10px;
    color: #B3B3B3;
    margin: 0;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 
 .note__tag-inner {

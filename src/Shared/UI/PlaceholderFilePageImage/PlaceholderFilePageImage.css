@@ -1,0 +1,15 @@
+.placeholder {
+   text-align: center;
+   margin: 0 auto;
+   margin-top: 20px;
+ }
+ 
+ .placeholder__image {
+   max-width: 300px;
+   height: auto;
+ }
+
+ .no__files {
+   font-weight: 500;
+   font-size: 18px;
+ }

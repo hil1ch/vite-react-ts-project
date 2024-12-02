@@ -1,4 +1,4 @@
-import MyPageFile from '../../../Shared/UI/MyPageFile/MyPageFile';
+import PlaceholderFilePageImage from '../../../Shared/UI/PlaceholderFilePageImage/PlaceholderFilePageImage';
 import './MyPageFiles.css';
 
 function MyPageFiles() {
@@ -8,7 +8,7 @@ function MyPageFiles() {
             <h3 className="my__files-title">Мои файлы</h3>
          </div>
          <div className="my__page-files__list">
-            <MyPageFile />
+            <PlaceholderFilePageImage />
          </div>
       </div>
    )
