@@ -24,6 +24,7 @@ const FILES_DATA = [
    "description": "Nulla mollis molestie lorem.",
    "email": "hdixsee4@symantec.com",
    "tag": "Учеба"
-}]
+   }
+]
 
 export default FILES_DATA;

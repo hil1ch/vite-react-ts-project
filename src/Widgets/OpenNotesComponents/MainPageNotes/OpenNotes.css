@@ -23,7 +23,7 @@
    margin-bottom: 23px;
 }
 
-.main__page-notes-list {
+.main__page-notes__list {
    display: flex;
    gap: 15px;
    flex-wrap: wrap;

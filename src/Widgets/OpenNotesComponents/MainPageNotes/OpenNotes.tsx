@@ -12,7 +12,7 @@ function OpenNotes() {
       <p className="open__notes-description">
         Заметки, созданные другими пользователями
       </p>
-      <div className="main__page-notes-list">
+      <div className="main__page-notes__list">
         {NOTES_DATA.length > 0 ? (
           NOTES_DATA.map((note, index) => (
             <MainPageNote key={index} {...note} />
