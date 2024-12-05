@@ -28,6 +28,7 @@ function CreateAddFile() {
             className="add__file-input"
             onChange={handleFileItemChange}
             ref={fileInputRef}
+            required
             ></input>
          </div>
          {selectedFile && (

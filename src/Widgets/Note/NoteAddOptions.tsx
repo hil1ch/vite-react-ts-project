@@ -45,7 +45,7 @@ function NoteAddOptions() {
             <img src="src\images\add-tag.svg" alt="" className="add__tag-img"></img>
             <form className='tag__form'>
                <label className="tag__title" htmlFor="fruits">Выберите тег:</label>
-               <select className="tags__list" id="fruits" name="fruits">
+               <select className="tags__list" id="fruits" name="fruits" required>
                   <option value="Учеба">Учеба</option>
                   <option value="Кулинария">Кулинария</option>
                   <option value="Здоровье">Здоровье</option>

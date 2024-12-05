@@ -11,7 +11,7 @@ function CreateTagAndShare() {
         <img src="src\images\add-tag.svg" alt="" className="add__tag-img"></img>
         <form className='tag__form'>
           <label className="tag__title" htmlFor="tags">Выберите тег:</label>
-          <select className="tags__list" id="tags" name="tags">
+          <select className="tags__list" id="tags" name="tags" required>
             <option value="Учеба">Учеба</option>
             <option value="Кулинария">Кулинария</option>
             <option value="Здоровье">Здоровье</option>

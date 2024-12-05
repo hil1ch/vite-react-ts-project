@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useLocalStorage from '../../Features/hooks/useLocalStorage';
 import './CreateFileInner.css';
 import AlarmMessage from '../../Shared/UI/AlarmMessage/AlarmMessage';
 
@@ -7,8 +8,8 @@ const MAX_FILE_TEXT_LENGTH = 50;
 
 function CreateFileInner() {
 
-   const [fileTitle, setFileTitle] = useState<string>('');
-   const [fileText, setFileText] = useState<string>('');
+   const [fileTitle, setFileTitle] = useLocalStorage<string>('fileTitle', '');
+   const [fileText, setFileText] = useLocalStorage<string>('fileText', '');
    const [isTitleFileMax, setIsTitleFileMax] = useState<boolean>(false);
    const [isTextFileMax, setIsTextFileMax] = useState<boolean>(false);
 
