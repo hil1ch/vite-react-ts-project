@@ -33,7 +33,7 @@ function NoteInner() {
                </input>
             </div>
             <div className="note__text">
-               <textarea className="input__note-text" placeholder="Текст" required></textarea>
+               <textarea className="input__note-text" placeholder="Текст" rows={18} required></textarea>
          </div>
       </div>
    )

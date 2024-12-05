@@ -51,6 +51,7 @@ function CreateFileInner() {
                placeholder="Описание (до 50 символов)"
                value={fileText}
                onChange={handleFileTextChange}
+               rows={3}
                required>
                </textarea>
             </div>
