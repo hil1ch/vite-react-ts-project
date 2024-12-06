@@ -38,7 +38,7 @@
 .file__inner-username {
    display: flex;
    align-items: center;
-   margin-right: 315px;
+   flex: 1;
 }
 
 .file__inner-username img {
