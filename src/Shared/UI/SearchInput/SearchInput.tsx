@@ -5,8 +5,8 @@ function SearchInput() {
       <div>
          <form className='search__form'>
             <label className="search__title" htmlFor="search__tags">Сортировка по тегу:</label>
-            <select className="tags__list" id="search__tags" name="search__tags">
-               <option value="Учеба">Все</option>
+            <select className="search__tags-list" id="search__tags" name="search__tags">
+               <option value="Все">Все</option>
                <option value="Учеба">Учеба</option>
                <option value="Кулинария">Кулинария</option>
                <option value="Здоровье">Здоровье</option>

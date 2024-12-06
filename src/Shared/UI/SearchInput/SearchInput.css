@@ -10,9 +10,18 @@
    margin-right: 15px;
 }
 
-.tags__list {
+.search__tags-list {
    width: 200px;
    height: 25px;
    border-color: #d4d4d4;
    border-radius: 5px;
+   color: #b3b3b3;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 14px;
+   font-weight: 500;
+}
+
+option {
+   color: #b3b3b3;
+   font-weight: 500;
 }
