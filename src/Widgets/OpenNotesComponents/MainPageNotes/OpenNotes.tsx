@@ -10,14 +10,22 @@ interface Note {
   tag: string;
 }
 
-function OpenNotes() {
+interface OpenNotesTagProps {
+  selectedTag: string; // Пропс для выбранного тега
+}
+
+function OpenNotes({ selectedTag }: OpenNotesTagProps) {
 
   const [data, setData] = useState<Note[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://39085646937f8a29.mokky.dev/notes');
+        const url = selectedTag === 'Все' 
+          ? 'https://39085646937f8a29.mokky.dev/notes' 
+          : `https://39085646937f8a29.mokky.dev/notes?tag=${selectedTag}`;
+
+        const response = await fetch(url);
         const data = await response.json();
 
         if (!response.ok) {
@@ -36,7 +44,7 @@ function OpenNotes() {
     };
 
     fetchData();
-  }, []);
+  }, [selectedTag]);
 
   return (
     <div className="main__page-notes">
