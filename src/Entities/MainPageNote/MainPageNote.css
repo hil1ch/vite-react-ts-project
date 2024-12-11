@@ -25,6 +25,9 @@
    font-size: 15px;
    font-weight: 500;
    margin-bottom: 20px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 
 .note__inner-username {
