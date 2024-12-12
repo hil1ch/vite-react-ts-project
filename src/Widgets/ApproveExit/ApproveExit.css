@@ -48,7 +48,7 @@
    cursor: pointer;
 }
 
-.approve__delete {
+.approve__exit {
    font-family: 'Montserrat', sans-serif;
    border: none;
    color: #fff;
@@ -58,4 +58,8 @@
    font-size: 16px;
    font-weight: 500;
    cursor: pointer;
+}
+
+.approve__exit:hover {
+   background-color: #444444;
 }
