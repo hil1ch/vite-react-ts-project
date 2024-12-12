@@ -53,7 +53,7 @@ function RegistrationPage() {
         navigate('/myNotes');
       } else {
         // Обработка ошибки с сервера
-        setError(data.message || 'Произошла ошибка при регистрации');
+        setError('Пользователь уже зарегистрирован');
       }
    } catch (error: unknown) {
       if (error instanceof Error) {

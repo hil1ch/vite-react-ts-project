@@ -44,7 +44,7 @@ function Login() {
         navigate('/myNotes'); 
       } else {
         // Обработка ошибки с сервера
-        setError(data.message || 'Произошла ошибка при входе');
+        setError('Неверный логин или пароль');
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
