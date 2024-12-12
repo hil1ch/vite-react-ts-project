@@ -53,6 +53,9 @@ body {
    border-radius: 10px;
    padding: 19px 323px 18px 18px;
    margin-bottom: 28px;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   font-weight: 500;
 }
 
 .form input::placeholder {

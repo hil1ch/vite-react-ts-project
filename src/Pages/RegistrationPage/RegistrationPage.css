@@ -39,6 +39,9 @@ body {
    border: 1px solid #D4D4D4;
    border-radius: 10px;
    margin-bottom: 20px;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   font-weight: 500;
 }
 
 .form input:first-child {
