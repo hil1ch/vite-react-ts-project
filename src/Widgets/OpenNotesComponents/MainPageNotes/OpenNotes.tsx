@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import "./OpenNotes.css";
 import PlaceholderNotePageImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
@@ -15,35 +15,34 @@ interface OpenNotesTagProps {
 }
 
 function OpenNotes({ selectedTag }: OpenNotesTagProps) {
-
   const [data, setData] = useState<Note[]>([]);
+  const prevTag = useRef<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = selectedTag === 'Все' 
-          ? 'https://39085646937f8a29.mokky.dev/notes' 
+        const url = selectedTag === "Все"
+          ? "https://39085646937f8a29.mokky.dev/notes"
           : `https://39085646937f8a29.mokky.dev/notes?tag=${selectedTag}`;
 
         const response = await fetch(url);
-        const data = await response.json();
+        const result = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.message || 'Something went wrong');
+          throw new Error(result.message || "Something went wrong");
         }
 
-        setData(data);
+        setData(result);
       } catch (error: unknown) {
-        if (error instanceof Error) {
-          // Типизация ошибки как экземпляра Error
-          console.error('Error fetching:', error.message);
-        } else {
-          console.error('Unknown error:', error);
-        }
+        console.error('Error fetching:', error instanceof Error ? error.message : error);
       }
     };
 
-    fetchData();
+    // Проверка на изменение тега
+    if (prevTag.current !== selectedTag) { 
+      prevTag.current = selectedTag;
+      fetchData();
+    }
   }, [selectedTag]);
 
   return (

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import MainPageFile from "../../../Entities/MainPageFile/MainPageFile";
 import "./OpenFiles.css";
 import PlaceholderFilePageImage from "../../../Shared/UI/PlaceholderFilePageImage/PlaceholderFilePageImage";
@@ -15,35 +15,38 @@ interface OpenFilesTagProps {
 }
 
 function OpenFiles({ selectedTag }: OpenFilesTagProps) {
-
   const [data, setData] = useState<File[]>([]);
+  const prevTag = useRef<string | null>(null); // Храним предыдущее значение тега
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = selectedTag === 'Все' 
-          ? 'https://39085646937f8a29.mokky.dev/files' 
-          : `https://39085646937f8a29.mokky.dev/files?tag=${selectedTag}`;
+        const url =
+          selectedTag === "Все"
+            ? "https://39085646937f8a29.mokky.dev/files"
+            : `https://39085646937f8a29.mokky.dev/files?tag=${selectedTag}`;
 
         const response = await fetch(url);
-        const data = await response.json();
+        const result = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.message || 'Something went wrong');
+          throw new Error(result.message || "Something went wrong");
         }
 
-        setData(data);
+        setData(result);
       } catch (error: unknown) {
         if (error instanceof Error) {
-          // Типизация ошибки как экземпляра Error
-          console.error('Error fetching:', error.message);
+          console.error("Error fetching:", error.message);
         } else {
-          console.error('Unknown error:', error);
+          console.error("Unknown error:", error);
         }
       }
     };
 
-    fetchData();
+    if (prevTag.current !== selectedTag) { // Проверка на изменение тега
+      prevTag.current = selectedTag;
+      fetchData();
+    }
   }, [selectedTag]);
 
   return (
@@ -53,12 +56,10 @@ function OpenFiles({ selectedTag }: OpenFilesTagProps) {
       </div>
       <div className="main__page-files__list">
         {data.length > 0 ? (
-          data.map((item, index) => (
-            <MainPageFile key={index} {...item} />
-          ))
+          data.map((item, index) => <MainPageFile key={index} {...item} />)
         ) : (
           <PlaceholderFilePageImage />
-        )}  
+        )}
       </div>
     </div>
   );
