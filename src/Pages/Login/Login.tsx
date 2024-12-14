@@ -1,61 +1,66 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import './Login.css';
 
 interface LoginResponse {
   message?: string;
-  token?: string;  // Добавление токена в ответ
+  token?: string; 
 }
+
+interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+const loginUser = async (data: LoginRequest): Promise<LoginResponse> => {
+  const response = await fetch("https://39085646937f8a29.mokky.dev/auth", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || 'Неверный логин или пароль');
+  }
+
+  return result;
+};
 
 function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  // Используем useMutation для логина
+  const mutation = useMutation<LoginResponse, Error, LoginRequest>({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      localStorage.setItem('userEmail', email);
+      if (data.token) {
+        localStorage.setItem('authToken', data.token);
+      }
+      navigate('/myNotes');
+    },
+    onError: (error: Error) => {
+      setError(error.message || 'Ошибка при логине');
+    },
+  });
 
-    setLoading(true);
+  const { mutate, isError, error: mutationError } = mutation;
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
     setError(null);
 
-    try {
-      const res = await fetch("https://39085646937f8a29.mokky.dev/auth", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          password
-        })
-      });
-
-      const data: LoginResponse = await res.json();
-
-      if (res.ok) {
-        localStorage.setItem('userEmail', email);
-        
-        if (data.token) {
-          localStorage.setItem('authToken', data.token);
-        }
-
-        navigate('/myNotes'); 
-      } else {
-        // Обработка ошибки с сервера
-        setError('Неверный логин или пароль');
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(`Ошибка: ${error.message}`);
-      } else {
-        setError('Ошибка сети. Попробуйте позже.');
-      }
-    } finally {
-      setLoading(false);
-    }
+    // Выполняем мутацию с данными из формы
+    mutate({ email, password });
   };
 
   return (
@@ -78,8 +83,13 @@ function Login() {
           required
         />
         {error && <div className="error-message">{error}</div>}
-        <button type="submit" className="login__btn" disabled={loading}>
-          {loading ? 'Загрузка...' : 'Войти'}
+        {isError && (
+          <div className="error-message">
+            {mutationError instanceof Error ? mutationError.message : 'Ошибка при логине'}
+          </div>
+        )}
+        <button type="submit" className="login__btn">
+          Войти
         </button>
       </form>
       <Link to="/registration" className="no__account">Нет аккаунта?</Link>

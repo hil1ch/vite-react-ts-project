@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useQuery } from '@tanstack/react-query';
 import MainPageFile from "../../../Entities/MainPageFile/MainPageFile";
 import "./OpenFiles.css";
 import PlaceholderFilePageImage from "../../../Shared/UI/PlaceholderFilePageImage/PlaceholderFilePageImage";
@@ -11,43 +11,42 @@ interface File {
 }
 
 interface OpenFilesTagProps {
-  selectedTag: string; // Пропс для выбранного тега
+  selectedTag: string;
 }
 
+const fetchFiles = async (selectedTag: string): Promise<File[]> => {
+  const url =
+    selectedTag === "Все"
+      ? "https://39085646937f8a29.mokky.dev/files"
+      : `https://39085646937f8a29.mokky.dev/files?tag=${selectedTag}`;
+
+  const response = await fetch(url);
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Something went wrong");
+  }
+
+  return result;
+};
+
 function OpenFiles({ selectedTag }: OpenFilesTagProps) {
-  const [data, setData] = useState<File[]>([]);
-  const prevTag = useRef<string | null>(null); // Храним предыдущее значение тега
+  const {
+    data = [],
+    error,
+    isLoading,
+  } = useQuery<File[], Error>({
+    queryKey: ['files', selectedTag],
+    queryFn: () => fetchFiles(selectedTag),
+  });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const url =
-          selectedTag === "Все"
-            ? "https://39085646937f8a29.mokky.dev/files"
-            : `https://39085646937f8a29.mokky.dev/files?tag=${selectedTag}`;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-        const response = await fetch(url);
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(result.message || "Something went wrong");
-        }
-
-        setData(result);
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          console.error("Error fetching:", error.message);
-        } else {
-          console.error("Unknown error:", error);
-        }
-      }
-    };
-
-    if (prevTag.current !== selectedTag) { // Проверка на изменение тега
-      prevTag.current = selectedTag;
-      fetchData();
-    }
-  }, [selectedTag]);
+  if (error instanceof Error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div className="main__page-files">

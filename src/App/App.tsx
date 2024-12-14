@@ -1,3 +1,5 @@
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '../Shared/api/query-client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyFilesPage from "../Pages/MyFilesPage/MyFilesPage";
 import StartPage from "../Pages/StartPage/StartPage";
@@ -9,17 +11,19 @@ import RegistrationPage from "../Pages/RegistrationPage/RegistrationPage";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<StartPage />} />
-        <Route path="login" element={<Login />} />
-        <Route path="registration" element={<RegistrationPage />} />
-        <Route path="openNotes" element={<OpenNotesPage />} />
-        <Route path="openFiles" element={<OpenFilesPage />} />
-        <Route path="myNotes" element={<MyNotesPage />} />
-        <Route path="myFiles" element={<MyFilesPage />} />
-      </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<StartPage />} />
+          <Route path="login" element={<Login />} />
+          <Route path="registration" element={<RegistrationPage />} />
+          <Route path="openNotes" element={<OpenNotesPage />} />
+          <Route path="openFiles" element={<OpenFilesPage />} />
+          <Route path="myNotes" element={<MyNotesPage />} />
+          <Route path="myFiles" element={<MyFilesPage />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   )
 }
 

@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import './RegistrationPage.css';
 
 interface RegisterResponse {
@@ -8,15 +9,55 @@ interface RegisterResponse {
   token?: string;
 }
 
-function RegistrationPage() {
+interface RegisterRequest {
+  email: string;
+  password: string;
+}
+
+const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> => {
+  const response = await fetch("https://39085646937f8a29.mokky.dev/register", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || 'Ошибка при регистрации');
+  }
+
+  return result;
+};
+
+const RegistrationPage: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: FormEvent) => {
+  // Используем useMutation для регистрации
+  const mutation = useMutation<RegisterResponse, Error, RegisterRequest>({
+    mutationFn: registerUser,
+    onSuccess: (data) => {
+      localStorage.setItem('userEmail', email);
+      if (data.token) {
+        localStorage.setItem('authToken', data.token);
+      }
+      navigate('/myNotes');
+    },
+    onError: (error: Error) => {
+      setError(error.message || 'Ошибка при регистрации');
+    },
+  });
+
+  const { mutate, isError, error: mutationError } = mutation;
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     // Проверка на совпадение паролей
@@ -25,47 +66,8 @@ function RegistrationPage() {
       return;
     }
 
-    setLoading(true);
     setError('');
-
-    try {
-      const res = await fetch("https://39085646937f8a29.mokky.dev/register", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          password
-        })
-      });
-
-      const data: RegisterResponse = await res.json();
-
-      if (res.ok) {
-        localStorage.setItem('userEmail', email);
-
-        if (data.token) {
-          localStorage.setItem('authToken', data.token);
-        }
-
-        // Успешная регистрация, перенаправляем на страницу со своими заметками
-        navigate('/myNotes');
-      } else {
-        // Обработка ошибки с сервера
-        setError('Пользователь уже зарегистрирован');
-      }
-   } catch (error: unknown) {
-      if (error instanceof Error) {
-        setError(`Ошибка: ${error.message}`);
-      } else {
-        setError('Ошибка сети. Попробуйте позже.');
-      }
-    } finally {
-      setLoading(false);
-    }
-    
+    mutate({ email, password });
   };
 
   return (
@@ -99,8 +101,13 @@ function RegistrationPage() {
           required
         />
         {error && <div className="error-message">{error}</div>}
-        <button type="submit" className="registration__btn" disabled={loading}>
-          {loading ? 'Загрузка...' : 'Зарегистрироваться'}
+        {isError && (
+          <div className="error-message">
+            {mutationError instanceof Error ? mutationError.message : 'Ошибка сети. Попробуйте позже.'}
+          </div>
+        )}
+        <button type="submit" className="registration__btn" >
+          Зарегистрироваться
         </button>
       </form>
       <Link to="/login" className="has__account">Уже есть аккаунт?</Link>

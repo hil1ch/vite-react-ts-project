@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useQuery } from '@tanstack/react-query';
 import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import "./OpenNotes.css";
 import PlaceholderNotePageImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
@@ -11,39 +11,42 @@ interface Note {
 }
 
 interface OpenNotesTagProps {
-  selectedTag: string; // Пропс для выбранного тега
+  selectedTag: string;
 }
 
+const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
+  const url =
+    selectedTag === "Все"
+      ? "https://39085646937f8a29.mokky.dev/notes"
+      : `https://39085646937f8a29.mokky.dev/notes?tag=${selectedTag}`;
+
+  const response = await fetch(url);
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Something went wrong");
+  }
+
+  return result;
+};
+
 function OpenNotes({ selectedTag }: OpenNotesTagProps) {
-  const [data, setData] = useState<Note[]>([]);
-  const prevTag = useRef<string | null>(null);
+  const {
+    data = [],
+    error,
+    isLoading,
+  } = useQuery<Note[], Error>({
+    queryKey: ['notes', selectedTag],
+    queryFn: () => fetchNotes(selectedTag),
+  });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const url = selectedTag === "Все"
-          ? "https://39085646937f8a29.mokky.dev/notes"
-          : `https://39085646937f8a29.mokky.dev/notes?tag=${selectedTag}`;
+  if (isLoading) {
+    return <div>Загрузка...</div>;
+  }
 
-        const response = await fetch(url);
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(result.message || "Something went wrong");
-        }
-
-        setData(result);
-      } catch (error: unknown) {
-        console.error('Error fetching:', error instanceof Error ? error.message : error);
-      }
-    };
-
-    // Проверка на изменение тега
-    if (prevTag.current !== selectedTag) { 
-      prevTag.current = selectedTag;
-      fetchData();
-    }
-  }, [selectedTag]);
+  if (error instanceof Error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div className="main__page-notes">
