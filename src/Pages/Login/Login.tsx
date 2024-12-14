@@ -36,7 +36,8 @@ function Login() {
       const data: LoginResponse = await res.json();
 
       if (res.ok) {
-        // Если токен возвращен, сохраняем его в localStorage
+        localStorage.setItem('userEmail', email);
+        
         if (data.token) {
           localStorage.setItem('authToken', data.token);
         }

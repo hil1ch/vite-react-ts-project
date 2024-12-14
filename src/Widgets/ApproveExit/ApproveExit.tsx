@@ -9,7 +9,7 @@ function ApproveExit({ closeModal }: IApproveExitProps) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Удаляем токен из localStorage
+    localStorage.removeItem('userEmail');
     localStorage.removeItem('authToken');
 
     // Закрываем модальное окно

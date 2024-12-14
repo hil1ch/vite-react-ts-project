@@ -44,10 +44,11 @@ function RegistrationPage() {
       const data: RegisterResponse = await res.json();
 
       if (res.ok) {
+        localStorage.setItem('userEmail', email);
 
-         if (data.token) {
-            localStorage.setItem('authToken', data.token);
-         }
+        if (data.token) {
+          localStorage.setItem('authToken', data.token);
+        }
 
         // Успешная регистрация, перенаправляем на страницу со своими заметками
         navigate('/myNotes');
