@@ -55,7 +55,7 @@ const RegistrationPage: React.FC = () => {
     },
   });
 
-  const { mutate, isError, error: mutationError } = mutation;
+  const { mutate, isError, isPending, error: mutationError } = mutation;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -106,8 +106,8 @@ const RegistrationPage: React.FC = () => {
             {mutationError instanceof Error ? mutationError.message : 'Ошибка сети. Попробуйте позже.'}
           </div>
         )}
-        <button type="submit" className="registration__btn" >
-          Зарегистрироваться
+        <button type="submit" className="registration__btn" disabled={isPending}>
+          {isPending ? 'Загрузка...' : 'Зарегистрироваться'}
         </button>
       </form>
       <Link to="/login" className="has__account">Уже есть аккаунт?</Link>

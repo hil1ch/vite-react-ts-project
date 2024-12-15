@@ -53,7 +53,7 @@ function Login() {
     },
   });
 
-  const { mutate, isError, error: mutationError } = mutation;
+  const { mutate, isError, isPending, error: mutationError } = mutation;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -88,8 +88,8 @@ function Login() {
             {mutationError instanceof Error ? mutationError.message : 'Ошибка при логине'}
           </div>
         )}
-        <button type="submit" className="login__btn">
-          Войти
+        <button type="submit" className="login__btn" disabled={isPending}>
+          {isPending ? 'Загрузка...' : 'Войти'}
         </button>
       </form>
       <Link to="/registration" className="no__account">Нет аккаунта?</Link>
