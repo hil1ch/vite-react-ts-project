@@ -27,7 +27,7 @@ const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> =>
   const result = await response.json();
 
   if (!response.ok) {
-    throw new Error(result.message || 'Ошибка при регистрации');
+    throw new Error('Пользователь уже зарегистрирован');
   }
 
   return result;
@@ -49,9 +49,6 @@ const RegistrationPage: React.FC = () => {
         localStorage.setItem('authToken', data.token);
       }
       navigate('/myNotes');
-    },
-    onError: (error: Error) => {
-      setError(error.message || 'Ошибка при регистрации');
     },
   });
 

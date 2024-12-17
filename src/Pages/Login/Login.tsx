@@ -26,7 +26,7 @@ const loginUser = async (data: LoginRequest): Promise<LoginResponse> => {
   const result = await response.json();
 
   if (!response.ok) {
-    throw new Error(result.message || 'Неверный логин или пароль');
+    throw new Error('Неверный логин или пароль');
   }
 
   return result;
@@ -47,9 +47,6 @@ function Login() {
         localStorage.setItem('authToken', data.token);
       }
       navigate('/myNotes');
-    },
-    onError: (error: Error) => {
-      setError(error.message || 'Ошибка при логине');
     },
   });
 
