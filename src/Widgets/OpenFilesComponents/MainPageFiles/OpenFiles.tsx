@@ -17,8 +17,8 @@ interface OpenFilesTagProps {
 const fetchFiles = async (selectedTag: string): Promise<File[]> => {
   const url =
     selectedTag === "Все"
-      ? "https://39085646937f8a29.mokky.dev/files"
-      : `https://39085646937f8a29.mokky.dev/files?tag=${selectedTag}`;
+      ? "http://localhost:5182/api/Document/GetAllOpenDocuments"
+      : `http://localhost:5182/api/Document/GetAllOpenDocuments?tag=${selectedTag}`;
 
   const response = await fetch(url);
   const result = await response.json();
@@ -41,7 +41,7 @@ function OpenFiles({ selectedTag }: OpenFilesTagProps) {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Загрузка...</div>;
   }
 
   if (error instanceof Error) {

@@ -17,8 +17,8 @@ interface OpenNotesTagProps {
 const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
   const url =
     selectedTag === "Все"
-      ? "https://39085646937f8a29.mokky.dev/notes"
-      : `https://39085646937f8a29.mokky.dev/notes?tag=${selectedTag}`;
+    ? "http://localhost:5182/api/Note/GetOpenNotes"
+    : `http://localhost:5182/api/Note/GetOpenNotes?tag=${selectedTag}`;
 
   const response = await fetch(url);
   const result = await response.json();

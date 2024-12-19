@@ -27,7 +27,7 @@ const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> =>
   const result = await response.json();
 
   if (!response.ok) {
-    throw new Error('Пользователь уже зарегистрирован');
+    throw new Error('Ошибка при регистрации');
   }
 
   return result;
