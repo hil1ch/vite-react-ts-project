@@ -3,10 +3,19 @@ import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import "./OpenNotes.css";
 import PlaceholderNotePageImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
 
+interface Author {
+  email: string;
+  password: string;
+  activatedEmail: boolean;
+  registryCode: number;
+  gAcoount: boolean;
+  id: string;
+}
+
 interface Note {
   description: string;
   title: string;
-  user: string;
+  author: Author;
   tag: string;
 }
 

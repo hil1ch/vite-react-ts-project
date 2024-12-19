@@ -3,11 +3,20 @@ import MainPageFile from "../../../Entities/MainPageFile/MainPageFile";
 import "./OpenFiles.css";
 import PlaceholderFilePageImage from "../../../Shared/UI/PlaceholderFilePageImage/PlaceholderFilePageImage";
 
+interface Author {
+  email: string;
+  password: string;
+  activatedEmail: boolean;
+  registryCode: number;
+  gAcoount: boolean;
+  id: string;
+}
+
 interface File {
   description: string;
   title: string;
   tag: string;
-  user: string;
+  author: Author;
 }
 
 interface OpenFilesTagProps {
