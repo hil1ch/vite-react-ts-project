@@ -5,10 +5,10 @@ interface IMainPageFileProps {
    author: {
       email: string;
    };
-   tag: string;
+   documentNoteTags: string[];
 }
 
-function MainPageFile({title, description, author, tag}: IMainPageFileProps) {
+function MainPageFile({title, description, author, documentNoteTags}: IMainPageFileProps) {
    return (
       <div className="main__page-file">
          <div className="main__page-file__inner">
@@ -23,7 +23,7 @@ function MainPageFile({title, description, author, tag}: IMainPageFileProps) {
             </div>
             <div className="file__tag-inner">
                <img src="src\images\note-tag.svg" alt="" />
-               <span className="file__tag-name">{tag}</span>
+               <span className="file__tag-name">{documentNoteTags}</span>
             </div>
          </div>
       </div>

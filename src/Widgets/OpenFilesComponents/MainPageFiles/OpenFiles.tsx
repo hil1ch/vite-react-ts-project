@@ -15,7 +15,7 @@ interface Author {
 interface File {
   description: string;
   title: string;
-  tag: string;
+  documentNoteTags: string[];
   author: Author;
 }
 

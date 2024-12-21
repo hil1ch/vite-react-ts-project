@@ -16,7 +16,7 @@ interface Note {
   description: string;
   title: string;
   author: Author;
-  tag: string;
+  noteTags: string[];
 }
 
 interface OpenNotesTagProps {

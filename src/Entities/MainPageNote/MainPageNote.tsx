@@ -6,10 +6,10 @@ interface IMainPageNoteProps {
    author: {
       email: string;
    };
-   tag: string;
+   noteTags: string[];
 }
 
-function MainPageNote({description, title, author, tag}: IMainPageNoteProps) {
+function MainPageNote({description, title, author, noteTags}: IMainPageNoteProps) {
    return (
       <div className="main__page-note">
          <div className="main__page-note__inner">
@@ -22,7 +22,7 @@ function MainPageNote({description, title, author, tag}: IMainPageNoteProps) {
                </div>
                <div className="note__tag-inner">
                   <img src="src\images\note-tag.svg" alt="" />
-                  <span className="note__tag-name">{tag}</span>
+                  <span className="note__tag-name">{noteTags}</span>
                </div>
             </div>
          </div>
