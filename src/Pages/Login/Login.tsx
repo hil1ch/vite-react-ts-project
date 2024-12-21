@@ -14,7 +14,7 @@ interface LoginRequest {
 }
 
 const loginUser = async (data: LoginRequest): Promise<LoginResponse> => {
-  const response = await fetch("https://39085646937f8a29.mokky.dev/auth", {
+  const response = await fetch("http://localhost:5182/api/User/Login", {
     method: "POST",
     headers: {
       Accept: "application/json",

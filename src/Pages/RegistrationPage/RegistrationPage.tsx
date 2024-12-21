@@ -15,7 +15,7 @@ interface RegisterRequest {
 }
 
 const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> => {
-  const response = await fetch("https://39085646937f8a29.mokky.dev/register", {
+  const response = await fetch("http://localhost:5182/api/User/Register", {
     method: "POST",
     headers: {
       Accept: "application/json",
