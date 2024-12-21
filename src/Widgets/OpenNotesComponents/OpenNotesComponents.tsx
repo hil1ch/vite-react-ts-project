@@ -1,21 +1,20 @@
-import { useState } from "react";
+import { useState } from 'react';
 import SearchInput from "../../Shared/UI/SearchInput/SearchInput";
 import OpenNotes from "./MainPageNotes/OpenNotes";
 import "./OpenNotesComponents.css";
 
 function OpenNotesComponents() {
-
-  const [selectedTag, setSelectedTag] = useState<string>('Все');
+  const [selectedTag, setSelectedTag] = useState("Все");
 
   const handleTagChange = (tag: string) => {
-    setSelectedTag(tag);
+    setSelectedTag(tag); // Обновляем выбранный тег
   };
 
   return (
     <div className="main">
       <div className="main__page-inner">
-        <SearchInput onTagChange={handleTagChange}/>
-        <OpenNotes selectedTag={selectedTag}/>
+        <SearchInput onTagChange={handleTagChange} />
+        <OpenNotes selectedTag={selectedTag} />
       </div>
     </div>
   );

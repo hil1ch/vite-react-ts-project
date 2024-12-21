@@ -19,16 +19,8 @@ interface Note {
   noteTags: string[];
 }
 
-interface OpenNotesTagProps {
-  selectedTag: string;
-}
-
-const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
-  const url =
-    selectedTag === "Все"
-    ? "http://localhost:5182/api/Note/GetOpenNotes"
-    : `http://localhost:5182/api/Note/GetOpenNotes?tag=${selectedTag}`;
-
+const fetchNotes = async (): Promise<Note[]> => {
+  const url = "http://localhost:5182/api/Note/GetOpenNotes";
   const response = await fetch(url);
   const result = await response.json();
 
@@ -39,14 +31,18 @@ const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
   return result;
 };
 
-function OpenNotes({ selectedTag }: OpenNotesTagProps) {
+interface OpenNotesProps {
+  selectedTag: string;
+}
+
+function OpenNotes({ selectedTag }: OpenNotesProps) {
   const {
     data = [],
     error,
     isLoading,
   } = useQuery<Note[], Error>({
-    queryKey: ['notes', selectedTag],
-    queryFn: () => fetchNotes(selectedTag),
+    queryKey: ['notes'],
+    queryFn: fetchNotes,
   });
 
   if (isLoading) {
@@ -57,6 +53,11 @@ function OpenNotes({ selectedTag }: OpenNotesTagProps) {
     return <div>Error: {error.message}</div>;
   }
 
+  // Фильтруем заметки по тегу
+  const filteredNotes = selectedTag === "Все"
+    ? data
+    : data.filter(note => note.noteTags.includes(selectedTag));
+
   return (
     <div className="main__page-notes">
       <div className="open__notes-title__inner">
@@ -66,8 +67,8 @@ function OpenNotes({ selectedTag }: OpenNotesTagProps) {
         Заметки, созданные другими пользователями
       </p>
       <div className="main__page-notes__list">
-        {data.length > 0 ? (
-          data.map((item, index) => (
+        {filteredNotes.length > 0 ? (
+          filteredNotes.map((item, index) => (
             <MainPageNote key={index} {...item} />
           ))
         ) : (
