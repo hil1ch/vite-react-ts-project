@@ -19,6 +19,10 @@ interface Note {
   noteTags: string[];
 }
 
+interface OpenNotesTagProps {
+  selectedTag: string;
+}
+
 const fetchNotes = async (): Promise<Note[]> => {
   const url = "http://localhost:5182/api/Note/GetOpenNotes";
   const response = await fetch(url);
@@ -31,11 +35,7 @@ const fetchNotes = async (): Promise<Note[]> => {
   return result;
 };
 
-interface OpenNotesProps {
-  selectedTag: string;
-}
-
-function OpenNotes({ selectedTag }: OpenNotesProps) {
+function OpenNotes({ selectedTag }: OpenNotesTagProps) {
   const {
     data = [],
     error,

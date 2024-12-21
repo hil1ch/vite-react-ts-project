@@ -4,7 +4,6 @@ import OpenFiles from "./MainPageFiles/OpenFiles";
 import "./OpenFilesComponents.css";
 
 function OpenFilesComponents() {
-
   const [selectedTag, setSelectedTag] = useState<string>('Все');
 
   const handleTagChange = (tag: string) => {

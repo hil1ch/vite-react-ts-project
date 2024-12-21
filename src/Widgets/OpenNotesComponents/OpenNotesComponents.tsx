@@ -4,10 +4,10 @@ import OpenNotes from "./MainPageNotes/OpenNotes";
 import "./OpenNotesComponents.css";
 
 function OpenNotesComponents() {
-  const [selectedTag, setSelectedTag] = useState("Все");
+  const [selectedTag, setSelectedTag] = useState<string>("Все");
 
   const handleTagChange = (tag: string) => {
-    setSelectedTag(tag); // Обновляем выбранный тег
+    setSelectedTag(tag);
   };
 
   return (
