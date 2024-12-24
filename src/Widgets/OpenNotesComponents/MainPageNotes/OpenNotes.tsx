@@ -23,8 +23,12 @@ interface OpenNotesTagProps {
   selectedTag: string;
 }
 
-const fetchNotes = async (): Promise<Note[]> => {
-  const url = "http://localhost:5182/api/Note/GetOpenNotes";
+const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
+  const url =
+    selectedTag === "Все"
+      ? "http://localhost:5182/api/Note/GetOpenNotes"
+      : `http://localhost:5182/api/Note/OpenNotesByTags?tagNames=${selectedTag}`;
+
   const response = await fetch(url);
   const result = await response.json();
 
@@ -41,8 +45,8 @@ function OpenNotes({ selectedTag }: OpenNotesTagProps) {
     error,
     isLoading,
   } = useQuery<Note[], Error>({
-    queryKey: ['notes'],
-    queryFn: fetchNotes,
+    queryKey: ['notes', selectedTag],
+    queryFn: () => fetchNotes(selectedTag),
   });
 
   if (isLoading) {
@@ -53,11 +57,6 @@ function OpenNotes({ selectedTag }: OpenNotesTagProps) {
     return <div>Error: {error.message}</div>;
   }
 
-  // Фильтруем заметки по тегу
-  const filteredNotes = selectedTag === "Все"
-    ? data
-    : data.filter(note => note.noteTags.includes(selectedTag));
-
   return (
     <div className="main__page-notes">
       <div className="open__notes-title__inner">
@@ -67,8 +66,8 @@ function OpenNotes({ selectedTag }: OpenNotesTagProps) {
         Заметки, созданные другими пользователями
       </p>
       <div className="main__page-notes__list">
-        {filteredNotes.length > 0 ? (
-          filteredNotes.map((item, index) => (
+        {data.length > 0 ? (
+          data.map((item, index) => (
             <MainPageNote key={index} {...item} />
           ))
         ) : (

@@ -16,7 +16,7 @@ function Note({ closeModal }: ICreateNoteProps) {
 
   return (
     <div className="modal__overlay">
-      <div className="note">
+      <form className="note">
         <CloseFileBtn closeModal={closeModal} />
         <ShareButton openModal={openModal} />
         <NoteInner />
@@ -25,7 +25,7 @@ function Note({ closeModal }: ICreateNoteProps) {
         {isOpenModal === "approveDelete" && (
           <ApproveDeleteNote closeModal={closeShareModal} />
         )}
-      </div>
+      </form>
     </div>
   );
 }

@@ -19,12 +19,15 @@ interface File {
   author: Author;
 }
 
-interface OpenFilesTagProps {
+interface OpenNotesTagProps {
   selectedTag: string;
 }
 
-const fetchFiles = async (): Promise<File[]> => {
-  const url = "http://localhost:5182/api/Document/GetAllOpenDocuments"
+const fetchFiles = async (selectedTag: string): Promise<File[]> => {
+  const url =
+    selectedTag === "Все"
+      ? "http://localhost:5182/api/Document/GetAllOpenDocuments"
+      : `http://localhost:5182/api/Document/OpenDocumentsByTags?tagNames=${selectedTag}`;
 
   const response = await fetch(url);
   const result = await response.json();
@@ -36,14 +39,14 @@ const fetchFiles = async (): Promise<File[]> => {
   return result;
 };
 
-function OpenFiles({ selectedTag }: OpenFilesTagProps) {
+function OpenFiles({ selectedTag }: OpenNotesTagProps) {
   const {
     data = [],
     error,
     isLoading,
   } = useQuery<File[], Error>({
-    queryKey: ['files'],
-    queryFn: fetchFiles,
+    queryKey: ['files', selectedTag],
+    queryFn: () => fetchFiles(selectedTag),
   });
 
   if (isLoading) {
@@ -54,18 +57,14 @@ function OpenFiles({ selectedTag }: OpenFilesTagProps) {
     return <div>Error: {error.message}</div>;
   }
 
-  const filteredFiles = selectedTag === "Все"
-    ? data
-    : data.filter(note => note.documentNoteTags.includes(selectedTag));
-
   return (
     <div className="main__page-files">
       <div className="open__files-title__inner">
         <h3 className="open__files-title">Файлы</h3>
       </div>
       <div className="main__page-files__list">
-      {filteredFiles.length > 0 ? (
-          filteredFiles.map((item, index) => (
+      {data.length > 0 ? (
+          data.map((item, index) => (
             <MainPageFile key={index} {...item} />
           ))
         ) : (
