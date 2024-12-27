@@ -1,5 +1,8 @@
 .close__file-btn {
-   text-align: end;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
 }
 
 .close__file-creating {
