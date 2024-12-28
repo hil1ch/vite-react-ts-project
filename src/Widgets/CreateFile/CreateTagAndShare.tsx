@@ -9,7 +9,7 @@ function CreateTagAndShare() {
     <div className="tag-and-share">
       <div className="add__tag">
         <img src="src\images\add-tag.svg" alt="" className="add__tag-img"></img>
-        <form className='tag__form'>
+        <div className='tag__form'>
           <label className="tag__title" htmlFor="tags">Выберите тег:</label>
           <select className="tags__list" id="tags" name="tags" required>
             <option value="Учеба">Учеба</option>
@@ -20,7 +20,7 @@ function CreateTagAndShare() {
             <option value="Разработка">Разработка</option>
             <option value="Дизайн">Дизайн</option>
           </select>
-        </form>
+        </div>
       </div>
       <div className="file__share-btn">
         <button

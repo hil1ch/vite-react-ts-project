@@ -13,13 +13,13 @@ function CreateFile({ closeModal }: ICreateFileProps) {
   return (
     <div className="create__file">
       <div className="modal__overlay">
-        <section className="file__modal-inner">
+        <form className="file__modal-inner">
           <CloseFileBtn closeModal={closeModal} />
           <CreateFileInner />
           <CreateAddFile />
           <CreateTagAndShare />
           <CreateSaveFileBtn />
-        </section>
+        </form>
       </div>
     </div>
   );

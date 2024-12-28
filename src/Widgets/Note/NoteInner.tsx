@@ -31,6 +31,7 @@ function NoteInner() {
          <div className="note__title">
             <input
                className="input__note-title"
+               name='title'
                type="text"
                placeholder="Заголовок"
                value={noteTitle}
@@ -42,6 +43,7 @@ function NoteInner() {
             <textarea
                className="input__note-text"
                placeholder="Текст"
+               name='text'
                rows={18}
                value={noteText}
                onChange={handleTextChange}
