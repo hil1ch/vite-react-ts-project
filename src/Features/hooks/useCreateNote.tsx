@@ -35,7 +35,7 @@ export function useCreateNote() {
 
          return jsonApiInstance(`/api/Note/CreateNote`, {
             method: 'POST',
-            body: formData,
+            body: JSON.stringify(formData),
          });
       },
       async onSettled() {

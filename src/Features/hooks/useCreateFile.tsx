@@ -29,7 +29,7 @@ export function useCreateFile() {
 
          return jsonApiInstance(`/api/Document/SaveNewDocument`, {
             method: 'POST',
-            body: formData,
+            body: JSON.stringify(formData),
          });
       },
       async onSettled() {

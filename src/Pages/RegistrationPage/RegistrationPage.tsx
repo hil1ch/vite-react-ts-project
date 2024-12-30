@@ -24,7 +24,14 @@ const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> =>
     body: JSON.stringify(data),
   });
 
-  const result = await response.json();
+  const text = await response.text();
+  let result: RegisterResponse;
+
+  try {
+    result = text ? JSON.parse(text) : {};
+  } catch (error) {
+    throw new Error('Некорректный ответ от сервера');
+  }
 
   if (!response.ok) {
     throw new Error('Ошибка при регистрации');
