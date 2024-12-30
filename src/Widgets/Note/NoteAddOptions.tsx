@@ -27,6 +27,7 @@ function NoteAddOptions() {
                   <img src="src\images\add-file.svg" alt="" className="add__file-img"></img>
                   <input 
                   type="file" 
+                  name='files'
                   className="add__file-input"
                   onChange={handleFileItemChange}
                   ref={fileInputRef}
@@ -43,9 +44,9 @@ function NoteAddOptions() {
          </div>
          <div className="add__tag">
             <img src="src\images\add-tag.svg" alt="" className="add__tag-img"></img>
-            <form className='tag__form'>
+            <div className='tag__form'>
                <label className="tag__title" htmlFor="tags">Выберите тег:</label>
-               <select className="tags__list" id="tags" name="tags" required>
+               <select className="tags__list" id="tags" name="tagsNames" required>
                   <option value="Учеба">Учеба</option>
                   <option value="Кулинария">Кулинария</option>
                   <option value="Здоровье">Здоровье</option>
@@ -54,7 +55,7 @@ function NoteAddOptions() {
                   <option value="Разработка">Разработка</option>
                   <option value="Дизайн">Дизайн</option>
                </select>
-            </form>
+            </div>
          </div>
       </div>
    )

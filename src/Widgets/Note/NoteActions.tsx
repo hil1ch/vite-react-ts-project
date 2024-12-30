@@ -1,3 +1,4 @@
+import { useCreateNote } from '../../Features/hooks/useCreateNote';
 import './NoteActions.css';
 
 interface INoteActionsProps {
@@ -5,11 +6,12 @@ interface INoteActionsProps {
  }
 
 function NoteActions({openModal}: INoteActionsProps) {
+   const {isPending} = useCreateNote();
 
    return (
       <div className="note__actions">
          <div className="note__action">
-            <button type="button" className="note__action-btn save isDisabled">
+            <button type="submit" className={`note__action-btn save ${isPending ? "isDisabled" : ""}`} disabled={isPending}>
                <img src="src\images\save.svg" alt="" className="note__img"></img>
                <p className="note__text-btn__save">Сохранить</p>
             </button>

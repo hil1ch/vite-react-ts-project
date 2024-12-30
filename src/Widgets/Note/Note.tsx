@@ -1,4 +1,5 @@
 import { useModal } from "../../Features/hooks/useModal";
+import { useCreateNote } from "../../Features/hooks/useCreateNote";
 import "./Note.css";
 import NoteInner from "./NoteInner";
 import NoteOptions from "./NoteOptions";
@@ -12,9 +13,11 @@ interface ICreateNoteProps {
 function Note({ closeModal }: ICreateNoteProps) {
   const { isOpenModal, openModal, closeModal: closeShareModal } = useModal();
 
+  const {handleCreate} = useCreateNote();
+
   return (
     <div className="modal__overlay">
-      <form className="note">
+      <form className="note" onSubmit={handleCreate}>
         <CloseFileBtn closeModal={closeModal} />
         <NoteInner />
         <NoteOptions openModal={() => openModal("approveDelete")} />
