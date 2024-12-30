@@ -9,7 +9,7 @@ export function useCreateNote() {
          authorId: string;
          title: string;
          text: string;
-         description: string;
+         description?: string;
          isOpen: boolean;
          tagsNames: string[];
          files?: File[];
@@ -18,19 +18,23 @@ export function useCreateNote() {
          formData.append("authorId", data.authorId);
          formData.append("title", data.title);
          formData.append("text", data.text);
+
+         if (data.description) {
+            formData.append("description", data.description);
+         }
+         
          formData.append("isOpen", String(data.isOpen));
-         formData.append("tags", data.tagsNames.join(','));
+         formData.append("tagsNames", data.tagsNames.join(','));
 
          // Добавляем файлы, если они есть
          if (data.files) {
             data.files.forEach(file => {
-               formData.append("file", file);
+               formData.append("files", file);
             });
          }
 
          return jsonApiInstance(`/api/Note/CreateNote`, {
             method: 'POST',
-            headers: { 'Content-Type': 'multipart/form-data' },
             body: formData,
          });
       },
@@ -49,8 +53,8 @@ export function useCreateNote() {
       const text = String(formData.get('text') ?? '');
       const description = String(formData.get('description') ?? '');
       const isOpen = formData.get('isOpen') === 'on';
-      const tagsNames = String(formData.get('tags') ?? '').split(',').map(tag => tag.trim());
-      const files = formData.getAll('file') as File[];
+      const tagsNames = String(formData.get('tagsNames') ?? '').split(',').map(tag => tag.trim());
+      const files = formData.getAll('files') as File[];
 
       console.log("Form data:", {
          authorId,
