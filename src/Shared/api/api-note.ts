@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { jsonApiInstance } from "../../Shared/api/api-instance";
+import { jsonApiInstance } from "./api-instance";
 
 export type NoteDto = {
    AuthorId: string,
@@ -8,7 +8,7 @@ export type NoteDto = {
    Description: string,
    isOpen: boolean,
    TagsNames: string[],
-   Files: string[],
+   Files: File[],
 }
 
 export const noteListApi = {

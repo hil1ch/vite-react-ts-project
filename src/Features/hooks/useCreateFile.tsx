@@ -1,45 +1,39 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { jsonApiInstance } from "../../Shared/api/api-instance";
 
-export function useCreateNote() {
+export function useCreateFile() {
    const queryClient = useQueryClient();
 
-   const createNoteMutation = useMutation({
+   const createFileMutation = useMutation({
       mutationFn: async (data: {
          authorId: string;
          title: string;
-         text: string;
-         description?: string;
+         description: string;
          isOpen: boolean;
+         mailsToAccess?: string[];
          tagsNames: string[];
-         files?: File[];
+         file: File;
       }) => {
          const formData = new FormData();
          formData.append("authorId", data.authorId);
          formData.append("title", data.title);
-         formData.append("text", data.text);
+         formData.append("description", data.description);
+         formData.append("isOpen", String(data.isOpen));
 
-         if (data.description) {
-            formData.append("description", data.description);
+         if (data.mailsToAccess) {
+            formData.append("mailsToAccess", data.mailsToAccess.join(','));
          }
          
-         formData.append("isOpen", String(data.isOpen));
          formData.append("tagsNames", data.tagsNames.join(','));
+         formData.append("file", data.file);
 
-         // Добавляем файлы, если они есть
-         if (data.files) {
-            data.files.forEach(file => {
-               formData.append("files", file);
-            });
-         }
-
-         return jsonApiInstance(`/api/Note/CreateNote`, {
+         return jsonApiInstance(`/api/Document/SaveNewDocument`, {
             method: 'POST',
             body: JSON.stringify(formData),
          });
       },
       async onSettled() {
-         await queryClient.invalidateQueries({ queryKey: ["myNotes"] });
+         await queryClient.invalidateQueries({ queryKey: ["myFiles"] });
       },
    })
 
@@ -50,30 +44,30 @@ export function useCreateNote() {
 
       const authorId = String(formData.get('authorId') ?? ''); 
       const title = String(formData.get('title') ?? '');
-      const text = String(formData.get('text') ?? '');
       const description = String(formData.get('description') ?? '');
       const isOpen = formData.get('isOpen') === 'on';
+      const mailsToAccess = String(formData.get('mailsToAccess')?? '').split(',').map(mail => mail.trim());
       const tagsNames = String(formData.get('tagsNames') ?? '').split(',').map(tag => tag.trim());
-      const files = formData.getAll('files') as File[];
+      const file = formData.get('file') as File;
 
       console.log("Form data:", {
          authorId,
          title,
-         text,
          description,
          isOpen,
+         mailsToAccess,
          tagsNames,
-         files
+         file
       });
 
-      createNoteMutation.mutate({
+      createFileMutation.mutate({
          authorId,
          title,
-         text,
          description,
          isOpen,
+         mailsToAccess,
          tagsNames,
-         files
+         file
       });
    
       e.currentTarget.reset();
@@ -81,6 +75,6 @@ export function useCreateNote() {
 
    return {
       handleCreate,
-      isPending: createNoteMutation.isPending
+      isPending: createFileMutation.isPending
    }
 }  

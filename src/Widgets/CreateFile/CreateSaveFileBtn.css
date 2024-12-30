@@ -15,3 +15,7 @@
    cursor: pointer;
    margin-top: 23px;
 }
+
+.isDisabled {
+   opacity: 30%;
+}
