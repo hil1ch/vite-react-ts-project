@@ -25,6 +25,7 @@ function CreateAddFile() {
             <img src="src\images\add-file.svg" alt="" className="create__add-file__img"></img>
             <input 
             type="file" 
+            name='file'
             className="add__file-input"
             onChange={handleFileItemChange}
             ref={fileInputRef}

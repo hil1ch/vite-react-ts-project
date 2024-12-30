@@ -1,3 +1,4 @@
+import { useCreateFile } from "../../Features/hooks/useCreateFile";
 import CloseFileBtn from "../../Shared/UI/CloseFileBtn/CloseFileBtn";
 import CreateFileInner from "./CreateFileInner";
 import "./CreateFile.css";
@@ -10,10 +11,12 @@ interface ICreateFileProps {
 }
 
 function CreateFile({ closeModal }: ICreateFileProps) {
+  const {handleCreate} = useCreateFile();
+
   return (
     <div className="create__file">
       <div className="modal__overlay">
-        <form className="file__modal-inner">
+        <form className="file__modal-inner" onSubmit={handleCreate}>
           <CloseFileBtn closeModal={closeModal} />
           <CreateFileInner />
           <CreateAddFile />
