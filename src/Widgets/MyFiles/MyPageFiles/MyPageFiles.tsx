@@ -23,8 +23,11 @@ interface MyFilesTagProps {
   selectedTag: string;
 }
 
-const fetchMyFiles = async (): Promise<MyFile[]> => {
-  const url = "http://localhost:5182/api/Document/GetUserDocuments";
+const fetchMyFiles = async (selectedTag: string): Promise<MyFile[]> => {
+  const url =
+    selectedTag === "Все"
+      ? "http://localhost:5182/api/Document/GetUserDocuments"
+      : `http://localhost:5182/api/Document/UserDocumentsByTags?tagNames=${selectedTag}`;
 
   const response = await fetch(url);
   const result = await response.json();
@@ -42,8 +45,8 @@ function MyPageFiles({ selectedTag }: MyFilesTagProps) {
     error,
     isLoading,
   } = useQuery<MyFile[], Error>({
-    queryKey: ["myFiles"],
-    queryFn: fetchMyFiles,
+    queryKey: ["myFiles", selectedTag],
+    queryFn: () => fetchMyFiles(selectedTag),
   });
 
   if (isLoading) {
@@ -54,19 +57,14 @@ function MyPageFiles({ selectedTag }: MyFilesTagProps) {
     return <div>Error: {error.message}</div>;
   }
 
-  const filteredMyFiles =
-    selectedTag === "Все"
-      ? data
-      : data.filter((note) => note.documentNoteTags.includes(selectedTag));
-
   return (
     <div className="my__page-files">
       <div className="my__files-title__inner">
         <h3 className="my__files-title">Мои файлы</h3>
       </div>
       <div className="my__page-files__list">
-      {filteredMyFiles.length > 0 ? (
-          filteredMyFiles.map((item, index) => (
+      {data.length > 0 ? (
+          data.map((item, index) => (
             <MainPageFile key={index} {...item} />
           ))
         ) : (
