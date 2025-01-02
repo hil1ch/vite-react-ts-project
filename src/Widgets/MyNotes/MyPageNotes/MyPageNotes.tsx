@@ -23,8 +23,12 @@ interface MyNotesTagProps {
   selectedTag: string;
 }
 
-const fetchMyNotes = async (): Promise<MyNote[]> => {
-  const url = "http://localhost:5182/api/Note/GetAllNotesByUser";
+const fetchMyNotes = async (selectedTag: string): Promise<MyNote[]> => {
+  const url =
+    selectedTag === "Все"
+      ? "http://localhost:5182/api/Note/GetMyNotes"
+      : `http://localhost:5182/api/Note/UserNotesByTags?tagNames=${selectedTag}`;
+
   const response = await fetch(url);
   const result = await response.json();
 
@@ -41,8 +45,8 @@ function MyPageNotes({ selectedTag }: MyNotesTagProps) {
       error,
       isLoading,
     } = useQuery<MyNote[], Error>({
-      queryKey: ['myNotes'],
-      queryFn: fetchMyNotes,
+      queryKey: ['myNotes', selectedTag],
+      queryFn: () => fetchMyNotes(selectedTag),
     });
   
     if (isLoading) {
@@ -52,11 +56,6 @@ function MyPageNotes({ selectedTag }: MyNotesTagProps) {
     if (error instanceof Error) {
       return <div>Error: {error.message}</div>;
     }
-  
-    // Фильтруем заметки по тегу
-    const filteredMyNotes = selectedTag === "Все"
-      ? data
-      : data.filter(note => note.noteTags.includes(selectedTag));
 
   return (
     <div className="my__page-notes">
@@ -65,8 +64,8 @@ function MyPageNotes({ selectedTag }: MyNotesTagProps) {
       </div>
       <p className="my__notes-description">Заметки, созданные мной</p>
       <div className="my__page-notes-list">
-      {filteredMyNotes.length > 0 ? (
-          filteredMyNotes.map((item, index) => (
+      {data.length > 0 ? (
+          data.map((item, index) => (
             <MainPageNote key={index} {...item} />
           ))
         ) : (
