@@ -27,3 +27,8 @@
 .note__text-btn__delete {
    color: #EF0202;
 }
+
+.note__action-btn.delete.isDisabled {
+   opacity: 0.3; 
+   cursor: not-allowed; 
+}
