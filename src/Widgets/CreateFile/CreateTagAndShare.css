@@ -72,3 +72,8 @@
 .file__action-edit-btn__delete img {
    margin-right: 8px;
 }
+
+.file__action-edit-btn__delete.isDisabled {
+   opacity: 0.3; 
+   cursor: not-allowed; 
+}

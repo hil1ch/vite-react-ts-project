@@ -16,7 +16,7 @@ function Note({ closeModal }: ICreateNoteProps) {
   const {handleCreate} = useCreateNote();
 
   const { noteId } = useParams<{ noteId: string }>();
-   const isNoteCreated = !noteId;
+  const isNoteCreated = !noteId;
 
   return (
     <div className="modal__overlay">

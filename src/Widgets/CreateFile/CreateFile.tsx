@@ -1,4 +1,5 @@
 import { useModal } from "../../Features/hooks/useModal";
+import { useParams } from "react-router-dom";
 import { useCreateFile } from "../../Features/hooks/useCreateFile";
 import CloseFileBtn from "../../Shared/UI/CloseFileBtn/CloseFileBtn";
 import CreateFileInner from "./CreateFileInner";
@@ -16,6 +17,9 @@ function CreateFile({ closeModal }: ICreateFileProps) {
   const { isOpenModal, openModal, closeApproveModal  } = useModal();
   const {handleCreate} = useCreateFile();
 
+  const { documentId } = useParams<{ documentId: string }>();
+  const isFileCreated = !documentId;
+
   return (
     <div className="create__file">
       <div className="modal__overlay">
@@ -23,7 +27,7 @@ function CreateFile({ closeModal }: ICreateFileProps) {
           <CloseFileBtn closeModal={closeModal} />
           <CreateFileInner />
           <CreateAddFile />
-          <CreateTagAndShare openModal={openModal}/>
+          <CreateTagAndShare openModal={openModal} isFileCreated={isFileCreated}/>
           <CreateSaveFileBtn />
           {isOpenModal === "approveDeleteFile" && (
             <ApproveDeleteFile closeModal={closeApproveModal} />

@@ -2,9 +2,10 @@ import "./CreateTagAndShare.css";
 
 interface ICreateFileOptionsProps {
   openModal: (type: string) => void; // Пропс для открытия модального окна
+  isFileCreated: boolean;
 }
 
-function CreateTagAndShare({openModal}: ICreateFileOptionsProps) {
+function CreateTagAndShare({openModal, isFileCreated}: ICreateFileOptionsProps) {
 
   return (
     <div className="tag-and-share">
@@ -24,7 +25,7 @@ function CreateTagAndShare({openModal}: ICreateFileOptionsProps) {
         </div>
       </div>
       <div className="file__action">
-        <button type="button" className="file__action-edit-btn__delete" onClick={() => openModal('approveDeleteFile')}>
+        <button type="button" className={`file__action-edit-btn__delete ${isFileCreated ? "isDisabled" : ""}`} onClick={() => openModal('approveDeleteFile')} disabled={isFileCreated}>
           <img src="src\images\delete.svg" alt="" className="note__img"></img>
           Удалить
         </button>
