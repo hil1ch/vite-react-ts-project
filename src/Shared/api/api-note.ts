@@ -2,11 +2,12 @@ import { queryOptions } from "@tanstack/react-query";
 import { jsonApiInstance } from "./api-instance";
 
 export type NoteDto = {
+   id: string;
    AuthorId: string,
    Text: string,
    Title: string,
    Description: string,
-   isOpen: boolean,
+   IsOpen: boolean,
    TagsNames: string[],
    Files: File[],
 }
@@ -27,4 +28,10 @@ export const noteListApi = {
          json: data
       })
    },
+
+   deleteNote: (id: string) => {
+      return jsonApiInstance(`/api/Note/DeleteNote/${id}`, {
+        method: "DELETE"
+      });
+    }
 }

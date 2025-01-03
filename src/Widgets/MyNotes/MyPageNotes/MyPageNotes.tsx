@@ -26,7 +26,7 @@ interface MyNotesTagProps {
 const fetchMyNotes = async (selectedTag: string): Promise<MyNote[]> => {
   const url =
     selectedTag === "Все"
-      ? "http://localhost:5182/api/Note/GetMyNotes"
+      ? "http://localhost:5182/api/Note/GetAllNotesByUser"
       : `http://localhost:5182/api/Note/UserNotesByTags?tagNames=${selectedTag}`;
 
   const response = await fetch(url);
