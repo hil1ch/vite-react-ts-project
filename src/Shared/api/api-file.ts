@@ -2,6 +2,7 @@ import { queryOptions } from "@tanstack/react-query";
 import { jsonApiInstance } from "./api-instance";
 
 export type FileDto = {
+   id: string;
    AuthorId: string,
    Title: string,
    Description: string,
@@ -27,4 +28,10 @@ export const fileListApi = {
          json: data
       })
    },
+
+   deleteFile: (id: string) => {
+      return jsonApiInstance(`/api/Document/DeleteDocument/${id}`, {
+        method: "DELETE"
+      });
+   }
 }
