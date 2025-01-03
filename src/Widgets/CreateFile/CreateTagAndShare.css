@@ -55,3 +55,20 @@
    font-size: 14px;
    font-weight: 500;
 }
+
+.file__action-edit-btn__delete {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 14px;
+   font-weight: 500;
+   color: #EF0202;
+   display: flex;
+   align-items: center;
+   padding: 0;
+   background-color: #fff;
+   border: none;
+   cursor: pointer;
+}
+
+.file__action-edit-btn__delete img {
+   margin-right: 8px;
+}

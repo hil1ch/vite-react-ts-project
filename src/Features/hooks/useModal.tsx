@@ -6,6 +6,11 @@ export const useModal = () => {
 
   const openModal = (type: string) => setIsOpenModal(type);
   const closeModal = () => setIsOpenModal(null);
+  const closeApproveModal = () => {
+    if (isOpenModal === "approveDeleteFile") {
+      setIsOpenModal(null);
+    }
+  };
 
-  return { isOpenModal, openModal, closeModal };
+  return { isOpenModal, openModal, closeModal, closeApproveModal };
 };
