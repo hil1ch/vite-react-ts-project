@@ -1,13 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { fileListApi } from "../../Shared/api/api-file";
 
-export function useDeleteFile(userId: string) {
+export function useDeleteFile() {
    const queryClient = useQueryClient();
 
    const deleteFileMutation = useMutation({
-      mutationFn: async (documentId : string) => {
-         return fileListApi.deleteFile(documentId);
-      },
+      mutationFn: fileListApi.deleteFile,
 
       async onSettled() {
          queryClient.invalidateQueries({ queryKey: [fileListApi.baseKey] });
@@ -15,7 +13,7 @@ export function useDeleteFile(userId: string) {
 
       onSuccess: (_, deletedId) => {
          queryClient.setQueryData(
-            fileListApi.getFileListQueryOptions(userId).queryKey,
+            fileListApi.getFileListQueryOptions().queryKey,
             (files) => files?.filter((file) => file.id !== deletedId)
          );
       }

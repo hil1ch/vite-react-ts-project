@@ -25,7 +25,7 @@ function NoteActions({ openModal, isNoteCreated, note }: INoteActionsProps) {
                type="submit"
                className={`note__action-btn save ${isPending ? "isDisabled" : ""}`}
                disabled={isPending}
-               onChange={() => toggleNote(note.id, !note.done)}
+               onChange={() => toggleNote(note.id, note.done)}
             >
                <img src="src/images/save.svg" alt="" className="note__img" />
                <p className="note__text-btn__save">Сохранить</p>

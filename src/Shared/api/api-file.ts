@@ -2,23 +2,24 @@ import { queryOptions } from "@tanstack/react-query";
 import { jsonApiInstance } from "./api-instance";
 
 export type FileDto = {
-   id: string;
+   id?: string;
    AuthorId: string,
    Title: string,
    Description: string,
-   isOpen: boolean,
+   IsOpen: boolean,
    MailsToAccess: string[],
    TagsNames: string[],
-   File: File,
+   File?: File,
+   done?: boolean
 }
 
 export const fileListApi = {
    baseKey: 'myFiles',
 
-   getFileListQueryOptions: (userId: string) => {
+   getFileListQueryOptions: () => {
       return queryOptions({
-         queryKey: [fileListApi.baseKey, "list", userId], 
-         queryFn: (meta) => jsonApiInstance<FileDto[]>(`/api/Document/GetUserDocuments?userId=${userId}`, {signal: meta.signal}),
+         queryKey: [fileListApi.baseKey, "list"], 
+         queryFn: (meta) => jsonApiInstance<FileDto[]>(`/api/Document/GetUserDocuments`, {signal: meta.signal}),
       });
    },
 
@@ -33,5 +34,12 @@ export const fileListApi = {
       return jsonApiInstance(`/api/Document/DeleteDocument/${id}`, {
         method: "DELETE"
       });
-   }
+   },
+
+   updateFile: (data: FileDto & {id: string}) => {
+      return jsonApiInstance<FileDto>(`/api/Document/SaveCangesDocument/${data.id}`, {
+         method: 'PATCH',
+         json: data
+      })
+   },
 }

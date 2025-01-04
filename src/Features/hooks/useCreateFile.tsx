@@ -1,39 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { jsonApiInstance } from "../../Shared/api/api-instance";
+import { fileListApi } from "../../Shared/api/api-file";
 
 export function useCreateFile() {
    const queryClient = useQueryClient();
 
    const createFileMutation = useMutation({
-      mutationFn: async (data: {
-         authorId: string;
-         title: string;
-         description: string;
-         isOpen: boolean;
-         mailsToAccess?: string[];
-         tagsNames: string[];
-         file: File;
-      }) => {
-         const formData = new FormData();
-         formData.append("authorId", data.authorId);
-         formData.append("title", data.title);
-         formData.append("description", data.description);
-         formData.append("isOpen", String(data.isOpen));
+      mutationFn: fileListApi.createFile,
 
-         if (data.mailsToAccess) {
-            formData.append("mailsToAccess", data.mailsToAccess.join(','));
-         }
-         
-         formData.append("tagsNames", data.tagsNames.join(','));
-         formData.append("file", data.file);
-
-         return jsonApiInstance(`/api/Document/SaveNewDocument`, {
-            method: 'POST',
-            body: JSON.stringify(formData),
-         });
-      },
       async onSettled() {
-         await queryClient.invalidateQueries({ queryKey: ["myFiles"] });
+         await queryClient.invalidateQueries({ queryKey: [fileListApi.baseKey] });
       },
    })
 
@@ -42,32 +17,32 @@ export function useCreateFile() {
 
       const formData = new FormData(e.currentTarget);
 
-      const authorId = String(formData.get('authorId') ?? ''); 
-      const title = String(formData.get('title') ?? '');
-      const description = String(formData.get('description') ?? '');
-      const isOpen = formData.get('isOpen') === 'on';
-      const mailsToAccess = String(formData.get('mailsToAccess')?? '').split(',').map(mail => mail.trim());
-      const tagsNames = String(formData.get('tagsNames') ?? '').split(',').map(tag => tag.trim());
-      const file = formData.get('file') as File;
+      const AuthorId = String(formData.get('authorId') ?? ''); 
+      const Title = String(formData.get('title') ?? '');
+      const Description = String(formData.get('description') ?? '');
+      const IsOpen = formData.get('isOpen') === 'on';
+      const MailsToAccess = String(formData.get('mailsToAccess')?? '').split(',').map(mail => mail.trim());
+      const TagsNames = String(formData.get('tagsNames') ?? '').split(',').map(tag => tag.trim());
+      const File = formData.get('file') as File;
 
       console.log("Form data:", {
-         authorId,
-         title,
-         description,
-         isOpen,
-         mailsToAccess,
-         tagsNames,
-         file
+         AuthorId,
+         Title,
+         Description,
+         IsOpen,
+         MailsToAccess,
+         TagsNames,
+         File
       });
 
       createFileMutation.mutate({
-         authorId,
-         title,
-         description,
-         isOpen,
-         mailsToAccess,
-         tagsNames,
-         file
+         AuthorId,
+         Title,
+         Description,
+         IsOpen,
+         MailsToAccess,
+         TagsNames,
+         File
       });
    
       e.currentTarget.reset();
