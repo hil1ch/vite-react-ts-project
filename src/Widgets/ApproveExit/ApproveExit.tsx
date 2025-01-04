@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { queryClient } from '../../Shared/api/query-client';
 import './ApproveExit.css';
 
 interface IApproveExitProps {
@@ -9,6 +10,7 @@ function ApproveExit({ closeModal }: IApproveExitProps) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    queryClient.removeQueries();
     localStorage.removeItem('userEmail');
     localStorage.removeItem('authToken');
 

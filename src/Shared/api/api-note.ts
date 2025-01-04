@@ -2,7 +2,7 @@ import { queryOptions } from "@tanstack/react-query";
 import { jsonApiInstance } from "./api-instance";
 
 export type NoteDto = {
-   id: string;
+   id?: string;
    AuthorId: string,
    Text: string,
    Title: string,
@@ -10,15 +10,16 @@ export type NoteDto = {
    IsOpen: boolean,
    TagsNames: string[],
    Files: File[],
+   done?: boolean,
 }
 
 export const noteListApi = {
    baseKey: 'myNotes',
 
-   getNoteListQueryOptions: (userId: string) => {
+   getNoteListQueryOptions: () => {
       return queryOptions({
-         queryKey: [noteListApi.baseKey, "list", userId], 
-         queryFn: (meta) => jsonApiInstance<NoteDto[]>(`/api/Note/GetAllNotesByUser?userId=${userId}`, {signal: meta.signal}),
+         queryKey: [noteListApi.baseKey, "list"], 
+         queryFn: (meta) => jsonApiInstance<NoteDto[]>(`/api/Note/GetAllNotesByUser`, {signal: meta.signal}),
       });
    },
 
@@ -33,5 +34,12 @@ export const noteListApi = {
       return jsonApiInstance(`/api/Note/DeleteNote/${id}`, {
         method: "DELETE"
       });
-    }
+   },
+
+   updateNote: (data: NoteDto & {id: string}) => {
+      return jsonApiInstance<NoteDto>(`/api/Note/EditNote/${data.id}`, {
+         method: 'PATCH',
+         json: data
+      })
+   },
 }

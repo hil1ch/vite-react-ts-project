@@ -1,45 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { jsonApiInstance } from "../../Shared/api/api-instance";
+import { noteListApi } from "../../Shared/api/api-note";
 
 export function useCreateNote() {
    const queryClient = useQueryClient();
 
    const createNoteMutation = useMutation({
-      mutationFn: async (data: {
-         authorId: string;
-         title: string;
-         text: string;
-         description?: string;
-         isOpen: boolean;
-         tagsNames: string[];
-         files?: File[];
-      }) => {
-         const formData = new FormData();
-         formData.append("authorId", data.authorId);
-         formData.append("title", data.title);
-         formData.append("text", data.text);
+      mutationFn: noteListApi.createNote,
 
-         if (data.description) {
-            formData.append("description", data.description);
-         }
-         
-         formData.append("isOpen", String(data.isOpen));
-         formData.append("tagsNames", data.tagsNames.join(','));
-
-         // Добавляем файлы, если они есть
-         if (data.files) {
-            data.files.forEach(file => {
-               formData.append("files", file);
-            });
-         }
-
-         return jsonApiInstance(`/api/Note/CreateNote`, {
-            method: 'POST',
-            body: JSON.stringify(formData),
-         });
-      },
       async onSettled() {
-         await queryClient.invalidateQueries({ queryKey: ["myNotes"] });
+         await queryClient.invalidateQueries({ queryKey: [noteListApi.baseKey] });
       },
    })
 
@@ -48,32 +17,32 @@ export function useCreateNote() {
 
       const formData = new FormData(e.currentTarget);
 
-      const authorId = String(formData.get('authorId') ?? ''); 
-      const title = String(formData.get('title') ?? '');
-      const text = String(formData.get('text') ?? '');
-      const description = String(formData.get('description') ?? '');
-      const isOpen = formData.get('isOpen') === 'on';
-      const tagsNames = String(formData.get('tagsNames') ?? '').split(',').map(tag => tag.trim());
-      const files = formData.getAll('files') as File[];
+      const AuthorId = String(formData.get('authorId') ?? ''); 
+      const Title = String(formData.get('title') ?? '');
+      const Text = String(formData.get('text') ?? '');
+      const Description = String(formData.get('description') ?? '');
+      const IsOpen = formData.get('isOpen') === 'on';
+      const TagsNames = String(formData.get('tagsNames') ?? '').split(',').map(tag => tag.trim());
+      const Files = formData.getAll('files') as File[];
 
       console.log("Form data:", {
-         authorId,
-         title,
-         text,
-         description,
-         isOpen,
-         tagsNames,
-         files
+         AuthorId,
+         Title,
+         Text,
+         Description,
+         IsOpen,
+         TagsNames,
+         Files
       });
 
       createNoteMutation.mutate({
-         authorId,
-         title,
-         text,
-         description,
-         isOpen,
-         tagsNames,
-         files
+         AuthorId,
+         Title,
+         Text,
+         Description,
+         IsOpen,
+         TagsNames,
+         Files
       });
    
       e.currentTarget.reset();
