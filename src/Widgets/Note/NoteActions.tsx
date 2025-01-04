@@ -1,5 +1,4 @@
 import { useCreateNote } from '../../Features/hooks/useCreateNote';
-import { useToggleNote } from '../../Features/hooks/useToggleNote';
 import './NoteActions.css';
 
 export interface INote {
@@ -13,10 +12,9 @@ interface INoteActionsProps {
    note: INote
 }
 
-function NoteActions({ openModal, isNoteCreated, note }: INoteActionsProps) {
+function NoteActions({ openModal, isNoteCreated }: INoteActionsProps) {
 
    const { isPending } = useCreateNote();
-   const {toggleNote} = useToggleNote();
 
    return (
       <div className="note__actions">
@@ -25,7 +23,6 @@ function NoteActions({ openModal, isNoteCreated, note }: INoteActionsProps) {
                type="submit"
                className={`note__action-btn save ${isPending ? "isDisabled" : ""}`}
                disabled={isPending}
-               onChange={() => toggleNote(note.id, note.done)}
             >
                <img src="src/images/save.svg" alt="" className="note__img" />
                <p className="note__text-btn__save">Сохранить</p>

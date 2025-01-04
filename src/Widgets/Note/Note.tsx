@@ -1,11 +1,17 @@
 import { useModal } from "../../Features/hooks/useModal";
 import { useParams } from "react-router-dom";
 import { useCreateNote } from "../../Features/hooks/useCreateNote";
+import { useToggleNote } from "../../Features/hooks/useToggleNote";
 import "./Note.css";
 import NoteInner from "./NoteInner";
 import NoteOptions from "./NoteOptions";
 import CloseFileBtn from "../../Shared/UI/CloseFileBtn/CloseFileBtn";
 import ApproveDeleteNote from "../ApproveDeleteNote/ApproveDeleteNote";
+
+export interface INote {
+  id: string;
+  done: boolean;
+}
 
 interface ICreateNoteProps {
   closeModal?: () => void; // Пропс для закрытия модального окна
@@ -14,13 +20,28 @@ interface ICreateNoteProps {
 function Note({ closeModal }: ICreateNoteProps) {
   const { isOpenModal, openModal, closeModal: closeShareModal } = useModal();
   const {handleCreate} = useCreateNote();
+  const {toggleNote} = useToggleNote();
 
   const { noteId } = useParams<{ noteId: string }>();
   const isNoteCreated = !noteId;
 
+  const handleSubmit = (e:React.FormEvent) => {
+    e.preventDefault();
+
+    if (isNoteCreated) {
+      handleCreate(e as React.FormEvent<HTMLFormElement>);
+    } else {
+      toggleNote(noteId, !isNoteCreated);
+    }
+
+    if (closeModal) {
+      closeModal();
+    }
+  }
+
   return (
     <div className="modal__overlay">
-      <form className="note" onSubmit={handleCreate}>
+      <form className="note" onSubmit={handleSubmit}>
         <CloseFileBtn closeModal={closeModal} />
         <NoteInner />
         <NoteOptions openModal={() => openModal("approveDelete")} isNoteCreated={isNoteCreated}/>
