@@ -7,7 +7,7 @@ export type FileDto = {
    Title: string,
    Description: string,
    IsOpen: boolean,
-   MailsToAccess: string[],
+   MailsToAccess?: string[] | null,
    TagsNames: string[],
    File?: File,
    done?: boolean
