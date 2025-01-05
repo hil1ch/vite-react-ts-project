@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import PlaceholderFilePageImage from "../../../Shared/UI/PlaceholderFilePageImage/PlaceholderFilePageImage";
 import "./MyPageFiles.css";
 import MainPageFile from "../../../Entities/MainPageFile/MainPageFile";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Author {
   email: string;
@@ -59,6 +61,7 @@ function MyPageFiles({ selectedTag }: MyFilesTagProps) {
 
   return (
     <div className="my__page-files">
+      <ToastContainer />
       <div className="my__files-title__inner">
         <h3 className="my__files-title">Мои файлы</h3>
       </div>

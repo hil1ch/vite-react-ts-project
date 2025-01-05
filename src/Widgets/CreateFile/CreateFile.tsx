@@ -9,6 +9,7 @@ import CreateAddFile from "./CreateAddFile";
 import CreateTagAndShare from "./CreateTagAndShare";
 import CreateSaveFileBtn from "./CreateSaveFileBtn";
 import ApproveDeleteFile from "../ApproveDeleteFile/ApproveDeleteFile";
+import { toast } from "react-toastify";
 
 interface ICreateFileProps {
   closeModal?: () => void;
@@ -27,8 +28,10 @@ function CreateFile({ closeModal }: ICreateFileProps) {
 
     if (isFileCreated) {
       handleCreate(e as React.FormEvent<HTMLFormElement>);
+      toast.success("Заметка успешно создана!");
     } else {
       toggleFile(documentId, !isFileCreated);
+      toast.success("Заметка успешно обновлена!");
     }
 
     if (closeModal) {
