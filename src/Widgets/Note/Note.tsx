@@ -7,6 +7,7 @@ import NoteInner from "./NoteInner";
 import NoteOptions from "./NoteOptions";
 import CloseFileBtn from "../../Shared/UI/CloseFileBtn/CloseFileBtn";
 import ApproveDeleteNote from "../ApproveDeleteNote/ApproveDeleteNote";
+import { toast } from "react-toastify";
 
 export interface INote {
   id: string;
@@ -30,8 +31,10 @@ function Note({ closeModal }: ICreateNoteProps) {
 
     if (isNoteCreated) {
       handleCreate(e as React.FormEvent<HTMLFormElement>);
+      toast.success("Заметка успешно создана!");
     } else {
       toggleNote(id, !isNoteCreated);
+      toast.success("Заметка успешно обновлена!");
     }
 
     if (closeModal) {

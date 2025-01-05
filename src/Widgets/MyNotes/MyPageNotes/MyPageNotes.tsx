@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import "./MyPageNotes.css";
 import PlaceholderImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
 import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Author {
   email: string;
@@ -55,10 +57,11 @@ function MyPageNotes({ selectedTag }: MyNotesTagProps) {
   
     if (error instanceof Error) {
       return <div>Error: {error.message}</div>;
-    }
+    } 
 
   return (
     <div className="my__page-notes">
+      <ToastContainer />
       <div className="my__notes-title__inner">
         <h3 className="my__notes-title">Мои заметки</h3>
       </div>
