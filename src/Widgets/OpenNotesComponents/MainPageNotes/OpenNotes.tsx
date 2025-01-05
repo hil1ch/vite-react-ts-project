@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import "./OpenNotes.css";
 import PlaceholderNotePageImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
+import Note from '../../Note/Note';
 
 interface Author {
   email: string;
@@ -26,7 +28,7 @@ interface OpenNotesTagProps {
 const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
   const url =
     selectedTag === "Все"
-      ? "http://localhost:5182/api/Note/GetOpenNotes"
+      ? "https://39085646937f8a29.mokky.dev/notes"
       : `http://localhost:5182/api/Note/OpenNotesByTags?tagNames=${selectedTag}`;
 
   const response = await fetch(url);
@@ -40,6 +42,16 @@ const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
 };
 
 function OpenNotes({ selectedTag }: OpenNotesTagProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleNoteClick = () => {
+    setIsModalOpen(true);
+ };
+
+ const closeNoteModal = () => {
+    setIsModalOpen(false);
+ };
+
   const {
     data = [],
     error,
@@ -68,11 +80,12 @@ function OpenNotes({ selectedTag }: OpenNotesTagProps) {
       <div className="main__page-notes__list">
         {data.length > 0 ? (
           data.map((item, index) => (
-            <MainPageNote key={index} {...item} />
+            <MainPageNote key={index} {...item} onClick={handleNoteClick}/>
           ))
         ) : (
           <PlaceholderNotePageImage />
         )}
+        {isModalOpen && <Note closeModal={closeNoteModal} />}
       </div>
     </div>
   );

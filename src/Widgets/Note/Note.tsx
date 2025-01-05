@@ -22,8 +22,8 @@ function Note({ closeModal }: ICreateNoteProps) {
   const {handleCreate} = useCreateNote();
   const {toggleNote} = useToggleNote();
 
-  const { noteId } = useParams<{ noteId: string }>();
-  const isNoteCreated = !noteId;
+  const { id } = useParams<{ id: string }>();
+  const isNoteCreated = !id;
 
   const handleSubmit = (e:React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ function Note({ closeModal }: ICreateNoteProps) {
     if (isNoteCreated) {
       handleCreate(e as React.FormEvent<HTMLFormElement>);
     } else {
-      toggleNote(noteId, !isNoteCreated);
+      toggleNote(id, !isNoteCreated);
     }
 
     if (closeModal) {
