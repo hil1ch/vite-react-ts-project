@@ -17,7 +17,7 @@ export function useCreateNote() {
 
       const formData = new FormData(e.currentTarget);
 
-      const AuthorId = String(formData.get('authorId') ?? ''); 
+      const AuthorId = localStorage.getItem('userId') ?? ''; 
       const Title = String(formData.get('title') ?? '');
       const Text = String(formData.get('text') ?? '');
       const Description = String(formData.get('description') ?? '');

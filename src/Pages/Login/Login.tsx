@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
+import { jwtDecode } from 'jwt-decode';
 import './Login.css';
 
 interface LoginResponse {
@@ -11,6 +12,10 @@ interface LoginResponse {
 interface LoginRequest {
   email: string;
   password: string;
+}
+
+interface DecodedToken {
+  userId: string;
 }
 
 const loginUser = async (data: LoginRequest): Promise<LoginResponse> => {
@@ -45,6 +50,11 @@ function Login() {
       localStorage.setItem('userEmail', email);
       if (data.token) {
         localStorage.setItem('authToken', data.token);
+
+        const decodedToken = jwtDecode<DecodedToken>(data.token);
+        const userId = decodedToken.userId;
+        
+        localStorage.setItem('userId', userId);
       }
       navigate('/myNotes');
     },

@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
+import {jwtDecode} from 'jwt-decode';
 import './RegistrationPage.css';
 
 interface RegisterResponse {
@@ -14,6 +15,10 @@ interface RegisterRequest {
   password: string;
 }
 
+interface DecodedToken {
+  userId: string;
+}
+
 const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> => {
   const response = await fetch("http://localhost:5182/api/User/Register", {
     method: "POST",
@@ -25,13 +30,7 @@ const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> =>
   });
 
   const text = await response.text();
-  let result: RegisterResponse;
-
-  try {
-    result = text ? JSON.parse(text) : {};
-  } catch (error) {
-    throw new Error('Некорректный ответ от сервера');
-  }
+  const result = text ? JSON.parse(text) : {};
 
   if (!response.ok) {
     throw new Error('Ошибка при регистрации');
@@ -54,6 +53,11 @@ const RegistrationPage: React.FC = () => {
       localStorage.setItem('userEmail', email);
       if (data.token) {
         localStorage.setItem('authToken', data.token);
+
+        const decodedToken = jwtDecode<DecodedToken>(data.token);
+        const userId = decodedToken.userId;
+
+        localStorage.setItem('userId', userId);
       }
       navigate('/myNotes');
     },

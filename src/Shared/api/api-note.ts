@@ -9,7 +9,7 @@ export type NoteDto = {
    Description: string,
    IsOpen: boolean,
    TagsNames: string[],
-   Files: File[],
+   Files?: File[] | null,
    done?: boolean,
 }
 
