@@ -16,6 +16,7 @@ export interface INote {
 
 interface ICreateNoteProps {
   closeModal?: () => void; // Пропс для закрытия модального окна
+  note: INote;
 }
 
 function Note({ closeModal }: ICreateNoteProps) {

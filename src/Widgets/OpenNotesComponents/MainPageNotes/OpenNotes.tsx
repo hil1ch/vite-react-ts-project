@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import "./OpenNotes.css";
@@ -42,16 +41,6 @@ const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
 };
 
 function OpenNotes({ selectedTag }: OpenNotesTagProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleNoteClick = () => {
-    setIsModalOpen(true);
- };
-
- const closeNoteModal = () => {
-    setIsModalOpen(false);
- };
-
   const {
     data = [],
     error,
@@ -80,12 +69,11 @@ function OpenNotes({ selectedTag }: OpenNotesTagProps) {
       <div className="main__page-notes__list">
         {data.length > 0 ? (
           data.map((item, index) => (
-            <MainPageNote key={index} {...item} onClick={handleNoteClick}/>
+            <MainPageNote key={index} {...item}/>
           ))
         ) : (
           <PlaceholderNotePageImage />
         )}
-        {isModalOpen && <Note closeModal={closeNoteModal} />}
       </div>
     </div>
   );

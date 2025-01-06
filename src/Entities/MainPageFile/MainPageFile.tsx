@@ -23,7 +23,7 @@ function MainPageFile({title, description, author, documentNoteTags}: IMainPageF
             </div>
             <div className="file__tag-inner">
                <img src="src\images\note-tag.svg" alt="" />
-               <span className="file__tag-name">{documentNoteTags}</span>
+               <span className="file__tag-name">{documentNoteTags[1]}</span>
             </div>
          </div>
       </div>
