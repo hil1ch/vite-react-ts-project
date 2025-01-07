@@ -21,7 +21,7 @@ interface INote {
     tag: {
        name: string;
     };
- }[];
+  }[];
 }
 
 interface OpenNotesTagProps {

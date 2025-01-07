@@ -18,8 +18,12 @@ interface MyNote {
   description: string;
   title: string;
   author: Author;
-  noteTags: string[];
-  onClick: () => void;
+  noteTags: {
+    noteId: string;
+    tag: {
+       name: string;
+    };
+  }[];
 }
 
 interface MyNotesTagProps {

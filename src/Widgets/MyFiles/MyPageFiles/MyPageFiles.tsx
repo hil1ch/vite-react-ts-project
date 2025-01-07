@@ -17,7 +17,12 @@ interface Author {
 interface MyFile {
   description: string;
   title: string;
-  documentNoteTags: string[];
+  documentNoteTags: {
+    documentNoteId: string;
+    tag: {
+     name: string;
+   };
+  }[];
   author: Author;
 }
 
