@@ -1,18 +1,44 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import './SearchInput.css';
 
 interface SearchInputProps {
   onTagChange: (tag: string) => void;
 }
 
+interface ITag {
+  name: string;
+}
+
+async function fetchTags(): Promise<ITag[]> {
+  const response = await fetch('http://localhost:5182/api/Tag/GetAllTags');
+  if (!response.ok) {
+    throw new Error('Failed to fetch tags');
+  }
+  return response.json();
+}
+
 function SearchInput({ onTagChange }: SearchInputProps) {
   const [selectedTag, setSelectedTag] = useState("Все");
+
+  const { data: tags = [], isLoading, isError } = useQuery({
+    queryKey: ['tags'], 
+    queryFn: fetchTags
+  });
 
   const handleTagChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const tag = event.target.value;
     setSelectedTag(tag);
     onTagChange(tag);
   };
+
+  if (isLoading) {
+    return <div>Загрузка...</div>;
+  }
+
+  if (isError) {
+    return <div>Ошибка при загрузке тегов</div>;
+  }
 
   return (
     <div>
@@ -26,13 +52,11 @@ function SearchInput({ onTagChange }: SearchInputProps) {
           onChange={handleTagChange}
         >
           <option value="Все">Все</option>
-          <option value="Учеба">Учеба</option>
-          <option value="Кулинария">Кулинария</option>
-          <option value="Здоровье">Здоровье</option>
-          <option value="Спорт">Спорт</option>
-          <option value="Цели">Цели</option>
-          <option value="Разработка">Разработка</option>
-          <option value="Дизайн">Дизайн</option>
+          {tags.map((tag) => (
+            <option key={tag.name} value={tag.name}>
+              {tag.name}
+            </option>
+          ))}
         </select>
       </form>
     </div>

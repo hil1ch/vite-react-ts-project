@@ -12,10 +12,15 @@ interface Author {
   id: string;
 }
 
-interface File {
+interface IFile {
   description: string;
   title: string;
-  documentNoteTags: string[];
+  documentNoteTags: {
+    documentNoteId: string;
+    tag: {
+      name: string;
+    };
+  }[];
   author: Author;
 }
 
@@ -23,7 +28,7 @@ interface OpenNotesTagProps {
   selectedTag: string;
 }
 
-const fetchFiles = async (selectedTag: string): Promise<File[]> => {
+const fetchFiles = async (selectedTag: string): Promise<IFile[]> => {
   const url =
     selectedTag === "Все"
       ? "http://localhost:5182/api/Document/GetAllOpenDocuments"
@@ -44,7 +49,7 @@ function OpenFiles({ selectedTag }: OpenNotesTagProps) {
     data = [],
     error,
     isLoading,
-  } = useQuery<File[], Error>({
+  } = useQuery<IFile[], Error>({
     queryKey: ['files', selectedTag],
     queryFn: () => fetchFiles(selectedTag),
   });

@@ -6,7 +6,12 @@ interface IMainPageNoteProps {
    author: {
       email: string;
    };
-   noteTags: string[];
+   noteTags: {
+      noteId: string;
+      tag: {
+         name: string;
+      };
+   }[];
 }
 
 function MainPageNote({description, title, author, noteTags}: IMainPageNoteProps) {
@@ -18,11 +23,17 @@ function MainPageNote({description, title, author, noteTags}: IMainPageNoteProps
             <div className='note__inner-username'>
                <div className="username__inner">
                   <img src="src\images\note-user.svg" alt="" />
-                  <span className="note__user-email">{author.email}</span>
+                  <span className="note__user-email">{author?.email}</span>
                </div>
                <div className="note__tag-inner">
                   <img src="src\images\note-tag.svg" alt="" />
-                  <span className="note__tag-name">{noteTags}</span>
+                  <span className="note__tag-name">
+                     {noteTags?.map((tagItem) => (
+                        <span key={tagItem.noteId} className="file__tag-name">
+                           {tagItem.tag.name}
+                        </span>
+                     ))}
+                  </span>
                </div>
             </div>
          </div>

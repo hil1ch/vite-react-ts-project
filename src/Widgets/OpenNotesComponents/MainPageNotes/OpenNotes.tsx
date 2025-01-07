@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import "./OpenNotes.css";
 import PlaceholderNotePageImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
-import Note from '../../Note/Note';
 
 interface Author {
   email: string;
@@ -13,18 +12,23 @@ interface Author {
   id: string;
 }
 
-interface Note {
+interface INote {
   description: string;
   title: string;
   author: Author;
-  noteTags: string[];
+  noteTags: {
+    noteId: string;
+    tag: {
+       name: string;
+    };
+ }[];
 }
 
 interface OpenNotesTagProps {
   selectedTag: string;
 }
 
-const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
+const fetchNotes = async (selectedTag: string): Promise<INote[]> => {
   const url =
     selectedTag === "Все"
       ? "http://localhost:5182/api/Note/GetOpenNotes"
@@ -45,7 +49,7 @@ function OpenNotes({ selectedTag }: OpenNotesTagProps) {
     data = [],
     error,
     isLoading,
-  } = useQuery<Note[], Error>({
+  } = useQuery<INote[], Error>({
     queryKey: ['notes', selectedTag],
     queryFn: () => fetchNotes(selectedTag),
   });
