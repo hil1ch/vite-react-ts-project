@@ -7,6 +7,7 @@ import OpenNotes from './OpenNotesLink';
 import MyFiles from './MyFilesLink';
 import Note from '../../Note/Note';
 import CreateFile from '../../CreateFile/CreateFile';
+import MyTodosLink from './MyTodosLink';
 import './SidebarNav.css';
 
 function SidebarNav() {
@@ -21,6 +22,7 @@ function SidebarNav() {
          <NewNoteButton onClick={() => openModal('note')}/>
          <NewFileButton onClick={() => openModal('file')}/>
          <p className="sidebar__own">Личное хранилище</p>
+         <MyTodosLink />
          <MyNotes />
          <MyFiles />
          {isOpenModal === 'note' && <Note closeModal={closeModal} />}

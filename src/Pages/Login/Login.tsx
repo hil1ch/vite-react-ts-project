@@ -57,7 +57,7 @@ function Login() {
         localStorage.setItem('userId', userId);
         console.log(userId);
       }
-      navigate('/myNotes');
+      navigate('/myTodos');
     },
   });
 

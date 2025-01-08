@@ -8,6 +8,7 @@ import OpenFilesPage from "../Pages/OpenFilesPage/OpenFilesPage";
 import MyNotesPage from "../Pages/MyNotesPage/MyNotesPage";
 import OpenNotesPage from "../Pages/OpenNotesPage/OpenNotesPage";
 import RegistrationPage from "../Pages/RegistrationPage/RegistrationPage";
+import MyTodosPage from '../Pages/MyTodosPage/MyTodosPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="registration" element={<RegistrationPage />} />
           <Route path="openNotes" element={<OpenNotesPage />} />
           <Route path="openFiles" element={<OpenFilesPage />} />
+          <Route path="myTodos" element={<MyTodosPage />} />
           <Route path="myNotes" element={<MyNotesPage />} />
           <Route path="myFiles" element={<MyFilesPage />} />
         </Routes>

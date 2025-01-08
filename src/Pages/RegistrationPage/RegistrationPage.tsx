@@ -58,7 +58,7 @@ const RegistrationPage: React.FC = () => {
 
         localStorage.setItem('userId', userId);
       }
-      navigate('/myNotes');
+      navigate('/myTodos');
     },
   });
 
