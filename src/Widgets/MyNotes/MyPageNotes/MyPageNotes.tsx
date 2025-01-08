@@ -5,19 +5,10 @@ import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-interface Author {
-  email: string;
-  password: string;
-  activatedEmail: boolean;
-  registryCode: number;
-  gAcoount: boolean;
-  id: string;
-}
-
 interface MyNote {
   description: string;
   title: string;
-  author: Author;
+  user: string;
   noteTags: string[];
 }
 
@@ -28,8 +19,8 @@ interface MyNotesTagProps {
 const fetchMyNotes = async (selectedTag: string): Promise<MyNote[]> => {
   const url =
     selectedTag === "Все"
-      ? "http://localhost:5182/api/Note/GetAllNotesByUser"
-      : `http://localhost:5182/api/Note/UserNotesByTags?tagNames=${selectedTag}`;
+      ? "https://39085646937f8a29.mokky.dev/myNotes"
+      : `https://39085646937f8a29.mokky.dev/myNotes?tag=${selectedTag}`;
 
   const response = await fetch(url);
   const result = await response.json();

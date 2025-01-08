@@ -19,25 +19,25 @@ export const fileListApi = {
    getFileListQueryOptions: () => {
       return queryOptions({
          queryKey: [fileListApi.baseKey, "list"], 
-         queryFn: (meta) => jsonApiInstance<FileDto[]>(`/api/Document/GetUserDocuments`, {signal: meta.signal}),
+         queryFn: (meta) => jsonApiInstance<FileDto[]>(`/myFiles`, {signal: meta.signal}),
       });
    },
 
    createFile: (data: FileDto) => {
-      return jsonApiInstance<FileDto>(`/api/Document/SaveNewDocument`, {
+      return jsonApiInstance<FileDto>(`/myFiles`, {
          method: 'POST',
          json: data
       })
    },
 
    deleteFile: (id: string) => {
-      return jsonApiInstance(`/api/Document/DeleteDocument/${id}`, {
+      return jsonApiInstance(`/myFiles/${id}`, {
         method: "DELETE"
       });
    },
 
    updateFile: (data: FileDto & {id: string}) => {
-      return jsonApiInstance<FileDto>(`/api/Document/SaveCangesDocument/${data.id}`, {
+      return jsonApiInstance<FileDto>(`/myFiles/${data.id}`, {
          method: 'PATCH',
          json: data
       })

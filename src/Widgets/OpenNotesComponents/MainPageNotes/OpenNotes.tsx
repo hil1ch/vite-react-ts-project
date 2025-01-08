@@ -1,23 +1,12 @@
-import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import "./OpenNotes.css";
 import PlaceholderNotePageImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
-import Note from '../../Note/Note';
 
-interface Author {
-  email: string;
-  password: string;
-  activatedEmail: boolean;
-  registryCode: number;
-  gAcoount: boolean;
-  id: string;
-}
-
-interface Note {
+interface INote {
   description: string;
   title: string;
-  author: Author;
+  user: string;
   noteTags: string[];
 }
 
@@ -25,11 +14,11 @@ interface OpenNotesTagProps {
   selectedTag: string;
 }
 
-const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
+const fetchNotes = async (selectedTag: string): Promise<INote[]> => {
   const url =
     selectedTag === "Все"
       ? "https://39085646937f8a29.mokky.dev/notes"
-      : `http://localhost:5182/api/Note/OpenNotesByTags?tagNames=${selectedTag}`;
+      : `https://39085646937f8a29.mokky.dev/notes?tag=${selectedTag}`;
 
   const response = await fetch(url);
   const result = await response.json();
@@ -42,21 +31,11 @@ const fetchNotes = async (selectedTag: string): Promise<Note[]> => {
 };
 
 function OpenNotes({ selectedTag }: OpenNotesTagProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleNoteClick = () => {
-    setIsModalOpen(true);
- };
-
- const closeNoteModal = () => {
-    setIsModalOpen(false);
- };
-
   const {
     data = [],
     error,
     isLoading,
-  } = useQuery<Note[], Error>({
+  } = useQuery<INote[], Error>({
     queryKey: ['notes', selectedTag],
     queryFn: () => fetchNotes(selectedTag),
   });
@@ -80,12 +59,11 @@ function OpenNotes({ selectedTag }: OpenNotesTagProps) {
       <div className="main__page-notes__list">
         {data.length > 0 ? (
           data.map((item, index) => (
-            <MainPageNote key={index} {...item} onClick={handleNoteClick}/>
+            <MainPageNote key={index} {...item}/>
           ))
         ) : (
           <PlaceholderNotePageImage />
         )}
-        {isModalOpen && <Note closeModal={closeNoteModal} />}
       </div>
     </div>
   );

@@ -3,20 +3,11 @@ import MainPageFile from "../../../Entities/MainPageFile/MainPageFile";
 import "./OpenFiles.css";
 import PlaceholderFilePageImage from "../../../Shared/UI/PlaceholderFilePageImage/PlaceholderFilePageImage";
 
-interface Author {
-  email: string;
-  password: string;
-  activatedEmail: boolean;
-  registryCode: number;
-  gAcoount: boolean;
-  id: string;
-}
-
 interface File {
   description: string;
   title: string;
   documentNoteTags: string[];
-  author: Author;
+  user: string;
 }
 
 interface OpenNotesTagProps {
@@ -26,8 +17,8 @@ interface OpenNotesTagProps {
 const fetchFiles = async (selectedTag: string): Promise<File[]> => {
   const url =
     selectedTag === "Все"
-      ? "http://localhost:5182/api/Document/GetAllOpenDocuments"
-      : `http://localhost:5182/api/Document/OpenDocumentsByTags?tagNames=${selectedTag}`;
+      ? "https://39085646937f8a29.mokky.dev/files"
+      : `https://39085646937f8a29.mokky.dev/files?tag=${selectedTag}`;
 
   const response = await fetch(url);
   const result = await response.json();

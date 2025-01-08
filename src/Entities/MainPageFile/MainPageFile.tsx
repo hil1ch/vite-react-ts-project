@@ -2,13 +2,11 @@ import './MainPageFile.css';
 interface IMainPageFileProps {
    title: string;
    description: string;
-   author: {
-      email: string;
-   };
+   user: string;
    documentNoteTags: string[];
 }
 
-function MainPageFile({title, description, author, documentNoteTags}: IMainPageFileProps) {
+function MainPageFile({title, description, user, documentNoteTags}: IMainPageFileProps) {
    return (
       <div className="main__page-file">
          <div className="main__page-file__inner">
@@ -19,7 +17,7 @@ function MainPageFile({title, description, author, documentNoteTags}: IMainPageF
             </div>
             <div className="file__inner-username">
                <img src="src\images\note-user.svg" alt="" />
-               <span className="file__user-email">{author.email}</span>
+               <span className="file__user-email">{user}</span>
             </div>
             <div className="file__tag-inner">
                <img src="src\images\note-tag.svg" alt="" />

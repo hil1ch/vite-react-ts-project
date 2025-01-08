@@ -20,7 +20,7 @@ interface DecodedToken {
 }
 
 const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> => {
-  const response = await fetch("http://localhost:5182/api/User/Register", {
+  const response = await fetch("https://39085646937f8a29.mokky.dev/register", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -29,8 +29,7 @@ const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> =>
     body: JSON.stringify(data),
   });
 
-  const text = await response.text();
-  const result = text ? JSON.parse(text) : {};
+  const result = await response.json();
 
   if (!response.ok) {
     throw new Error('Ошибка при регистрации');

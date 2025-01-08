@@ -5,20 +5,11 @@ import MainPageFile from "../../../Entities/MainPageFile/MainPageFile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-interface Author {
-  email: string;
-  password: string;
-  activatedEmail: boolean;
-  registryCode: number;
-  gAcoount: boolean;
-  id: string;
-}
-
 interface MyFile {
   description: string;
   title: string;
   documentNoteTags: string[];
-  author: Author;
+  user: string;
 }
 
 interface MyFilesTagProps {
@@ -28,8 +19,8 @@ interface MyFilesTagProps {
 const fetchMyFiles = async (selectedTag: string): Promise<MyFile[]> => {
   const url =
     selectedTag === "Все"
-      ? "http://localhost:5182/api/Document/GetUserDocuments"
-      : `http://localhost:5182/api/Document/UserDocumentsByTags?tagNames=${selectedTag}`;
+      ? "https://39085646937f8a29.mokky.dev/myFiles"
+      : `https://39085646937f8a29.mokky.dev/myFiles?tag=${selectedTag}`;
 
   const response = await fetch(url);
   const result = await response.json();

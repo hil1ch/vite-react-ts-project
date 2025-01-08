@@ -19,7 +19,7 @@ interface DecodedToken {
 }
 
 const loginUser = async (data: LoginRequest): Promise<LoginResponse> => {
-  const response = await fetch("http://localhost:5182/api/User/Login", {
+  const response = await fetch("https://39085646937f8a29.mokky.dev/auth", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -55,6 +55,7 @@ function Login() {
         const userId = decodedToken.userId;
         
         localStorage.setItem('userId', userId);
+        console.log(userId);
       }
       navigate('/myNotes');
     },

@@ -19,25 +19,25 @@ export const noteListApi = {
    getNoteListQueryOptions: () => {
       return queryOptions({
          queryKey: [noteListApi.baseKey, "list"], 
-         queryFn: (meta) => jsonApiInstance<NoteDto[]>(`/api/Note/GetAllNotesByUser`, {signal: meta.signal}),
+         queryFn: (meta) => jsonApiInstance<NoteDto[]>(`/myNotes`, {signal: meta.signal}),
       });
    },
 
    createNote: (data: NoteDto) => {
-      return jsonApiInstance<NoteDto>(`/api/Note/CreateNote`, {
+      return jsonApiInstance<NoteDto>(`/myNotes`, {
          method: 'POST',
          json: data
       })
    },
 
    deleteNote: (id: string) => {
-      return jsonApiInstance(`/api/Note/DeleteNote/${id}`, {
+      return jsonApiInstance(`/myNotes/${id}`, {
         method: "DELETE"
       });
    },
 
    updateNote: (data: NoteDto & {id: string}) => {
-      return jsonApiInstance<NoteDto>(`/api/Note/EditNote/${data.id}`, {
+      return jsonApiInstance<NoteDto>(`/myNotes/${data.id}`, {
          method: 'PATCH',
          json: data
       })

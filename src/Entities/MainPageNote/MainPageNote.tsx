@@ -5,12 +5,11 @@ interface IMainPageNoteProps {
    title: string;
    user: string;
    noteTags: string[];
-   onClick: () => void;
 }
 
-function MainPageNote({description, title, user, noteTags, onClick}: IMainPageNoteProps) {
+function MainPageNote({description, title, user, noteTags}: IMainPageNoteProps) {
    return (
-      <div className="main__page-note" onClick={onClick}>
+      <div className="main__page-note">
          <div className="main__page-note__inner">
             <p className="note__inner-description">{description}</p>
             <h4 className="note__inner-title">{title}</h4>

@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5182";
+const BASE_URL = "https://39085646937f8a29.mokky.dev";
 
 class ApiError extends Error {
   constructor(public response: Response) {
