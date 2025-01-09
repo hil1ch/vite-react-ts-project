@@ -1,0 +1,36 @@
+.my__page-todos {
+   margin-bottom: 47px;
+}
+
+.my__todos-title__inner {
+   margin-top: 30px;
+}
+
+.my__todos-title {
+   font-size: 20px;
+   font-weight: 500;
+   margin: 0;
+   margin-bottom: 10px;
+}
+
+.my__todos-description {
+   font-size: 16px;
+   font-weight: 500;
+   color: #B3B3B3;
+   margin-bottom: 40px;
+}
+
+.todo__item {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   width: 100%;
+   padding: 16px 11px;
+   border: 1px solid #D4D4D4;
+   border-radius: 10px;
+}
+
+.my__page-todos-list {
+   display: flex;
+   gap: 15px;
+   flex-wrap: wrap;
+}
