@@ -16,13 +16,17 @@ interface MyNotesTagProps {
   selectedTag: string;
 }
 
-const fetchMyNotes = async (selectedTag: string): Promise<MyNote[]> => {
+const fetchMyNotes = async (selectedTag: string, token: string | null): Promise<MyNote[]> => {
   const url =
     selectedTag === "Все"
       ? "https://39085646937f8a29.mokky.dev/myNotes"
       : `https://39085646937f8a29.mokky.dev/myNotes?tag=${selectedTag}`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}` ,
+    },
+  });
   const result = await response.json();
 
   if (!response.ok) {
@@ -33,13 +37,15 @@ const fetchMyNotes = async (selectedTag: string): Promise<MyNote[]> => {
 };
 
 function MyPageNotes({ selectedTag }: MyNotesTagProps) {
+  const token = localStorage.getItem('authToken');
+
   const {
       data = [],
       error,
       isLoading,
     } = useQuery<MyNote[], Error>({
       queryKey: ['myNotes', selectedTag],
-      queryFn: () => fetchMyNotes(selectedTag),
+      queryFn: () => fetchMyNotes(selectedTag, token),
     });
   
     if (isLoading) {

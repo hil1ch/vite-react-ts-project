@@ -16,13 +16,17 @@ interface MyFilesTagProps {
   selectedTag: string;
 }
 
-const fetchMyFiles = async (selectedTag: string): Promise<MyFile[]> => {
+const fetchMyFiles = async (selectedTag: string, token: string | null): Promise<MyFile[]> => {
   const url =
     selectedTag === "Все"
       ? "https://39085646937f8a29.mokky.dev/myFiles"
       : `https://39085646937f8a29.mokky.dev/myFiles?tag=${selectedTag}`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}` ,
+    },
+  });
   const result = await response.json();
 
   if (!response.ok) {
@@ -33,13 +37,15 @@ const fetchMyFiles = async (selectedTag: string): Promise<MyFile[]> => {
 };
 
 function MyPageFiles({ selectedTag }: MyFilesTagProps) {
+  const token = localStorage.getItem('authToken');
+
   const {
     data = [],
     error,
     isLoading,
   } = useQuery<MyFile[], Error>({
     queryKey: ["myFiles", selectedTag],
-    queryFn: () => fetchMyFiles(selectedTag),
+    queryFn: () => fetchMyFiles(selectedTag, token),
   });
 
   if (isLoading) {

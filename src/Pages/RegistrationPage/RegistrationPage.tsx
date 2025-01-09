@@ -1,7 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import {jwtDecode} from 'jwt-decode';
 import './RegistrationPage.css';
 
 interface RegisterResponse {
@@ -13,10 +12,6 @@ interface RegisterResponse {
 interface RegisterRequest {
   email: string;
   password: string;
-}
-
-interface DecodedToken {
-  userId: string;
 }
 
 const registerUser = async (data: RegisterRequest): Promise<RegisterResponse> => {
@@ -53,10 +48,6 @@ const RegistrationPage: React.FC = () => {
       if (data.token) {
         localStorage.setItem('authToken', data.token);
 
-        const decodedToken = jwtDecode<DecodedToken>(data.token);
-        const userId = decodedToken.userId;
-
-        localStorage.setItem('userId', userId);
       }
       navigate('/myTodos');
     },
