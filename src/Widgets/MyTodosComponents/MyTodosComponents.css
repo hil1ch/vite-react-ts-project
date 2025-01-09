@@ -1,0 +1,12 @@
+.main {
+   background-color: #fff;
+   margin: 10px;
+   width: 100%;
+   border-radius: 15px;
+}
+
+.main__page-inner {
+   padding-left: 47px;
+   padding-right: 47px;
+   padding-bottom: 60px;
+}
