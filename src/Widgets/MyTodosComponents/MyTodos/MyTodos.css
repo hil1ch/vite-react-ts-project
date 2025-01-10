@@ -27,10 +27,21 @@
    padding: 16px 11px;
    border: 1px solid #D4D4D4;
    border-radius: 10px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
 
 .my__page-todos-list {
    display: flex;
    gap: 15px;
    flex-wrap: wrap;
+}
+
+.delete__todo {
+   padding: 0;
+   margin: 0;
+   background-color: white;
+   border: none;
+   cursor: pointer;
 }

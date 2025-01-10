@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import './MyTodos.css';
 import PlaceholderTodoPageImage from '../../../Shared/UI/PlaceholderTodoPageImage/PlaceholderTodoPageImage';
 import { ToastContainer } from 'react-toastify';
+import { useDeleteTodo } from '../../../Features/hooks/useDeleteTodo';
 
 interface MyTodo {
    id: string;
@@ -30,6 +31,8 @@ const fetchMyTodos = async (token: string | null): Promise<MyTodo[]> => {
 function MyTodos() {
    const token = localStorage.getItem('authToken');
 
+   const {handleDelete, isPending} = useDeleteTodo();
+
    const {
       data = [],
       error,
@@ -49,7 +52,7 @@ function MyTodos() {
 
    return (
       <div className="my__page-todos">
-         <ToastContainer />
+         <ToastContainer autoClose={2000}/>
          <div className="my__todos-title__inner">
             <h3 className="my__todos-title">Мои задачи</h3>
          </div>
@@ -57,7 +60,13 @@ function MyTodos() {
          <div className="my__page-todos-list">
          {data.length > 0 ? (
             data.map(todo => (
-               <div className="todo__item" key={todo.id}>{todo.text}</div>
+               <div className="todo__item" key={todo.id}>
+                  {todo.text}
+                  <button className='delete__todo' onClick={() => handleDelete(todo.id)} disabled={isPending}>
+                     <img src='src\images\delete.svg'></img>
+                  </button>
+               </div>
+               
             ))
          ) : (
             <PlaceholderTodoPageImage />
