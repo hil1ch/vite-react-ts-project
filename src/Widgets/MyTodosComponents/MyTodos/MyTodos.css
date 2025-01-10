@@ -32,6 +32,17 @@
    align-items: center;
 }
 
+.todo__text {
+   width: 900px;
+   margin: 0;
+   margin-right: 10px;
+   margin-left: 10px;
+   text-align: center;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
 .my__page-todos-list {
    display: flex;
    gap: 15px;

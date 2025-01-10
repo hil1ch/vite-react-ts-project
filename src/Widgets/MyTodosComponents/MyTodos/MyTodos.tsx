@@ -3,6 +3,7 @@ import './MyTodos.css';
 import PlaceholderTodoPageImage from '../../../Shared/UI/PlaceholderTodoPageImage/PlaceholderTodoPageImage';
 import { ToastContainer } from 'react-toastify';
 import { useDeleteTodo } from '../../../Features/hooks/useDeleteTodo';
+import { useToggleTodo } from '../../../Features/hooks/useToggleTodo';
 
 interface MyTodo {
    id: string;
@@ -32,6 +33,7 @@ function MyTodos() {
    const token = localStorage.getItem('authToken');
 
    const {handleDelete, isPending} = useDeleteTodo();
+   const {toggleTodo} = useToggleTodo();
 
    const {
       data = [],
@@ -61,6 +63,7 @@ function MyTodos() {
          {data.length > 0 ? (
             data.map(todo => (
                <div className="todo__item" key={todo.id}>
+                  <input type='checkbox' checked={todo.done} onChange={() => toggleTodo(todo.id, todo.done)}/>
                   {todo.text}
                   <button className='delete__todo' onClick={() => handleDelete(todo.id)} disabled={isPending}>
                      <img src='src\images\delete.svg'></img>
