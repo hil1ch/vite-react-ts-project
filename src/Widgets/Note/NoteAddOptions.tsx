@@ -27,7 +27,7 @@ function NoteAddOptions() {
                   <img src="src\images\add-file.svg" alt="" className="add__file-img"></img>
                   <input 
                   type="file" 
-                  name='files'
+                  name='file'
                   className="add__file-input"
                   onChange={handleFileItemChange}
                   ref={fileInputRef}
@@ -46,7 +46,7 @@ function NoteAddOptions() {
             <img src="src\images\add-tag.svg" alt="" className="add__tag-img"></img>
             <div className='tag__form'>
                <label className="tag__title" htmlFor="tags">Выберите тег:</label>
-               <select className="tags__list" id="tags" name="tagsNames" required>
+               <select className="tags__list" id="tags" name="tag" required>
                   <option value="Учеба">Учеба</option>
                   <option value="Кулинария">Кулинария</option>
                   <option value="Здоровье">Здоровье</option>

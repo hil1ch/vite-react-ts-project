@@ -3,14 +3,11 @@ import { jsonApiInstance } from "./api-instance";
 
 export type NoteDto = {
    id?: string;
-   AuthorId: string,
-   Text: string,
-   Title: string,
-   Description: string,
-   IsOpen: boolean,
-   TagsNames: string[],
-   Files?: File[] | null,
-   done?: boolean,
+   userId: string;
+   text: string,
+   title: string,
+   tag: string
+   file?: File | null,
 }
 
 export const noteListApi = {

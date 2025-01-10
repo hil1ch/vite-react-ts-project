@@ -6,10 +6,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface MyNote {
-  description: string;
-  title: string;
-  user: string;
-  noteTags: string[];
+  id?: string;
+  userId: string;
+  title: string,
+  text: string,
+  email: string;
+  tag: string
+  file?: File | null,
 }
 
 interface MyNotesTagProps {

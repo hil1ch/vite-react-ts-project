@@ -17,32 +17,26 @@ export function useCreateNote() {
 
       const formData = new FormData(e.currentTarget);
 
-      const AuthorId = localStorage.getItem('userId') ?? ''; 
-      const Title = String(formData.get('title') ?? '');
-      const Text = String(formData.get('text') ?? '');
-      const Description = String(formData.get('description') ?? '');
-      const IsOpen = formData.get('isOpen') === 'on';
-      const TagsNames = String(formData.get('tagsNames') ?? '').split(',').map(tag => tag.trim());
-      const Files = formData.getAll('files') as File[];
+      const userId = localStorage.getItem('userEmail') ?? ''; 
+      const title = String(formData.get('title') ?? '');
+      const text = String(formData.get('text') ?? '');
+      const tag = String(formData.get('tag') ?? '');
+      const file = formData.get('file') as File;
 
       console.log("Form data:", {
-         AuthorId,
-         Title,
-         Text,
-         Description,
-         IsOpen,
-         TagsNames,
-         Files
+         userId,
+         title,
+         text,
+         tag,
+         file
       });
 
       createNoteMutation.mutate({
-         AuthorId,
-         Title,
-         Text,
-         Description,
-         IsOpen,
-         TagsNames,
-         Files
+         userId,
+         title,
+         text,
+         tag,
+         file
       });
    
       e.currentTarget.reset();
