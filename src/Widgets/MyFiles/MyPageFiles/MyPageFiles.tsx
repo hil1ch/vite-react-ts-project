@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import { useDeleteFile } from "../../../Features/hooks/useDeleteFile";
 import PlaceholderFilePageImage from "../../../Shared/UI/PlaceholderFilePageImage/PlaceholderFilePageImage";
 import "./MyPageFiles.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface FileDto {
-  id: number;
+  id: string;
   url: string;
 }
 
@@ -21,12 +22,12 @@ const fetchMyFiles = async (): Promise<FileDto[]> => {
 };
 
 function MyPageFiles() {
+  const {handleDelete, isPending} = useDeleteFile();
+
   const { data = [], error, isLoading } = useQuery<FileDto[], Error>({
     queryKey: ['uploads'],
     queryFn: fetchMyFiles,
   });
-
-  
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -42,6 +43,7 @@ function MyPageFiles() {
       <div className="my__files-title__inner">
         <h3 className="my__files-title">Мои файлы</h3>
       </div>
+      <p className="my__files-description">Файлы, загруженные мной</p>
       <div className="my__page-files__list">
       {data.length > 0 ? (
           data.map((file) => (
@@ -50,6 +52,9 @@ function MyPageFiles() {
               <a href={file.url} target="_blank" rel="noopener noreferrer">
                 {file.id}
               </a>
+              <button className='delete__file' onClick={() => handleDelete(file.id)} disabled={isPending}>
+                <img src='src\images\delete.svg'></img>
+              </button>
             </div>
           ))
         ) : (
