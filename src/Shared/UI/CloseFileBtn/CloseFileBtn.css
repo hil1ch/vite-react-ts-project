@@ -1,7 +1,6 @@
 .close__file-btn {
-   display: flex;
-   justify-content: space-between;
    align-items: center;
+   text-align: end;
    margin-bottom: 20px;
 }
 
@@ -10,4 +9,5 @@
    background-color: #fff;
    border: none;
    cursor: pointer;
+   
 }
