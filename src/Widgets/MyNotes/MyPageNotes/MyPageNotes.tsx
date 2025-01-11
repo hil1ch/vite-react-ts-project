@@ -12,7 +12,6 @@ interface MyNote {
   text: string,
   email: string;
   tag: string
-  file?: File | null,
 }
 
 interface MyNotesTagProps {

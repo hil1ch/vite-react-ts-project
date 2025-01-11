@@ -21,14 +21,12 @@ export function useCreateNote() {
       const title = String(formData.get('title') ?? '');
       const text = String(formData.get('text') ?? '');
       const tag = String(formData.get('tag') ?? '');
-      const file = formData.get('file') as File;
 
       console.log("Form data:", {
          userId,
          title,
          text,
          tag,
-         file
       });
 
       createNoteMutation.mutate({
@@ -36,7 +34,6 @@ export function useCreateNote() {
          title,
          text,
          tag,
-         file
       });
    
       e.currentTarget.reset();

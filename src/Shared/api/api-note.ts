@@ -7,7 +7,6 @@ export type NoteDto = {
    text: string,
    title: string,
    tag: string
-   file?: File | null,
 }
 
 export const noteListApi = {
