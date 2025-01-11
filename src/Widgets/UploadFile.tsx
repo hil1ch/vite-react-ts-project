@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface FileDto {
@@ -6,7 +6,7 @@ interface FileDto {
   url: string;
 }
 
-const fetchData = async (): Promise<FileDto[]> => {
+const fetchMyFiles = async (): Promise<FileDto[]> => {
   const response = await fetch('https://39085646937f8a29.mokky.dev/uploads');
   const data = await response.json();
 
@@ -17,7 +17,7 @@ const fetchData = async (): Promise<FileDto[]> => {
   return data;
 };
 
-const uploadFile = async (file: File): Promise<{ id: number; url: string }> => {
+const createFile = async (file: File): Promise<{ id: number; url: string }> => {
   const formData = new FormData();
   formData.append('file', file);
 
@@ -38,14 +38,14 @@ const UploadFile: React.FC = () => {
   const queryClient = useQueryClient();
 
   const { data = [], error, isLoading } = useQuery<FileDto[], Error>({
-    queryKey: ['data'],
-    queryFn: fetchData,
+    queryKey: ['uploads'],
+    queryFn: fetchMyFiles,
   });
 
   const mutation = useMutation<{ id: number; url: string }, Error, File>({
-    mutationFn: uploadFile,
+    mutationFn: createFile,
     onSuccess: (newFile) => {
-      queryClient.setQueryData<FileDto[]>(['data'], (oldData) => [
+      queryClient.setQueryData<FileDto[]>(['uploads'], (oldData) => [
         ...(oldData || []),
         { id: newFile.id, url: newFile.url },
       ]);
@@ -57,7 +57,7 @@ const UploadFile: React.FC = () => {
       const file = fileInputRef.current.files[0];
       mutation.mutate(file);
     } else {
-      console.error('No file selected');
+      console.error('Файл не выбран');
     }
   };
 
