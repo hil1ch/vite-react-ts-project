@@ -3,10 +3,9 @@
    margin-top: 60px;
 }
 
-.sidebar__common,
 .sidebar__own {
    margin-left: 35px;
-   margin-bottom: 20px;
+   margin-bottom: 15px;
    font-size: 14px;
    font-weight: 500;
    color: #8A8A8A;

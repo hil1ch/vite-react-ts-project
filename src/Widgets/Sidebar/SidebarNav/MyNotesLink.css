@@ -1,6 +1,8 @@
 .sidebar__item {
    display: flex;
    align-items: center;
+   margin-left: 35px;
+   margin-bottom: 30px;
    font-weight: 500;
    cursor: pointer;
 }
