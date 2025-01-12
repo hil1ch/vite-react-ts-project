@@ -30,11 +30,11 @@ function MyPageFiles() {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>Загрузка...</p>;
   }
 
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return <p>Ошибка: {error.message}</p>;
   }
 
   return (
