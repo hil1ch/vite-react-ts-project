@@ -9,7 +9,6 @@ export interface INote {
 interface INoteActionsProps {
    openModal?: (type: string) => void; // Пропс для открытия модального окна
    isNoteCreated: boolean; // Пропс для определения, создается ли новая заметка
-   note: INote
 }
 
 function NoteActions({ openModal, isNoteCreated }: INoteActionsProps) {

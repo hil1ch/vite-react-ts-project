@@ -3,12 +3,10 @@ import './ApproveDeleteNote.css';
 
 interface IApproveDeleteNoteProps {
    closeModal: () => void;
-   userId: string;
-   note: { id: string };
  }
 
-function ApproveDeleteNote({closeModal, userId, note}: IApproveDeleteNoteProps) {
-   const {handleDelete, isPending} = useDeleteNote(userId);
+function ApproveDeleteNote({closeModal}: IApproveDeleteNoteProps) {
+   const {isPending} = useDeleteNote();
 
    return (
       <div className="approve__open">
@@ -18,7 +16,7 @@ function ApproveDeleteNote({closeModal, userId, note}: IApproveDeleteNoteProps) 
                   <h2 className="approve__title">Удалить заметку?</h2>
                   <div className="approve__btn">
                      <button type="button" className="approve__cancel" onClick={closeModal}>Отменить</button>
-                     <button type="button" className="approve__delete" onClick={() => handleDelete(note.id)} disabled={isPending}>Удалить</button>
+                     <button type="button" className="approve__delete" disabled={isPending}>Удалить</button>
                   </div>
                </div>
             </section>

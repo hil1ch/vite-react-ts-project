@@ -9,11 +9,6 @@ import CloseFileBtn from "../../Shared/UI/CloseFileBtn/CloseFileBtn";
 import ApproveDeleteNote from "../ApproveDeleteNote/ApproveDeleteNote";
 import { toast } from "react-toastify";
 
-export interface INote {
-  id: string;
-  done: boolean;
-}
-
 interface ICreateNoteProps {
   closeModal?: () => void; // Пропс для закрытия модального окна
 }

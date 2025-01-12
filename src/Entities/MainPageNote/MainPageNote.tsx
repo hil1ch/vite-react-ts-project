@@ -7,7 +7,6 @@ interface IMainPageNoteProps {
    text: string,
    email: string;
    tag: string
-   file?: File | null,
  }
 
 function MainPageNote({text, title, userId, tag}: IMainPageNoteProps) {

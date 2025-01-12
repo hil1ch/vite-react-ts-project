@@ -4,10 +4,12 @@ import "./OpenNotes.css";
 import PlaceholderNotePageImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
 
 interface INote {
-  description: string;
-  title: string;
-  user: string;
-  noteTags: string[];
+  id?: string;
+   userId: string;
+   title: string,
+   text: string,
+   email: string;
+   tag: string
 }
 
 interface OpenNotesTagProps {
