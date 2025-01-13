@@ -4,6 +4,7 @@ import PlaceholderImage from "../../../Shared/UI/PlaceholderNotePageImage/Placeh
 import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDeleteNote } from "../../../Features/hooks/useDeleteNote";
 
 interface MyNote {
   id?: string;
@@ -41,6 +42,8 @@ const fetchMyNotes = async (selectedTag: string, token: string | null): Promise<
 function MyPageNotes({ selectedTag }: MyNotesTagProps) {
   const token = localStorage.getItem('authToken');
 
+  const {handleDelete, isPending} = useDeleteNote();
+
   const {
       data = [],
       error,
@@ -70,7 +73,7 @@ function MyPageNotes({ selectedTag }: MyNotesTagProps) {
       <div className="my__page-notes-list">
       {reversedNotes.length > 0 ? (
           reversedNotes.map((item, index) => (
-            <MainPageNote key={index} {...item} />
+            <MainPageNote key={index} {...item} onDelete={handleDelete} isPending={isPending}/>
           ))
         ) : (
           <PlaceholderImage />
