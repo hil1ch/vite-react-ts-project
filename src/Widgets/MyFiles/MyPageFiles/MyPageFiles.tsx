@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 interface FileDto {
   id: string;
   url: string;
+  fileName: string;
 }
 
 const fetchMyFiles = async (): Promise<FileDto[]> => {
@@ -37,6 +38,8 @@ function MyPageFiles() {
     return <p>Ошибка: {error.message}</p>;
   }
 
+  const reversedFiles = [...data].reverse();
+
   return (
     <div className="my__page-files">
       <ToastContainer autoClose={2000}/>
@@ -45,12 +48,12 @@ function MyPageFiles() {
       </div>
       <p className="my__files-description">Файлы, загруженные мной</p>
       <div className="my__page-files__list">
-      {data.length > 0 ? (
-          data.map((file) => (
+      {reversedFiles.length > 0 ? (
+          reversedFiles.map((file) => (
             <div className="file__item" key={file.id}>
               <img src="src\images\file-main-page.svg" alt="" />
-              <a href={file.url} target="_blank" rel="noopener noreferrer">
-                {file.id}
+              <a className="file__url" href={file.url} target="_blank">
+                {file.fileName}
               </a>
               <button className='delete__file' onClick={() => handleDelete(file.id)} disabled={isPending}>
                 <img src='src\images\delete.svg'></img>

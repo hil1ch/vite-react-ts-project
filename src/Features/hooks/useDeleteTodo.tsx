@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { todoListApi } from "../../Shared/api/api-todo";
-import { toast } from "react-toastify";
 
 export function useDeleteTodo() {
   const queryClient = useQueryClient();
@@ -11,7 +10,6 @@ export function useDeleteTodo() {
       queryClient.invalidateQueries({
         queryKey: [todoListApi.baseKey],
       });
-      toast.success("Задача успешно удалена");
     },
 
     async onSuccess(_, deletedId) {

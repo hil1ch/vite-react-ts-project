@@ -58,16 +58,18 @@ function MyPageNotes({ selectedTag }: MyNotesTagProps) {
       return <div>Error: {error.message}</div>;
     } 
 
+  const reversedNotes = [...data].reverse();
+
   return (
     <div className="my__page-notes">
-      <ToastContainer />
+      <ToastContainer autoClose={2000}/>
       <div className="my__notes-title__inner">
         <h3 className="my__notes-title">Мои заметки</h3>
       </div>
       <p className="my__notes-description">Заметки, созданные мной</p>
       <div className="my__page-notes-list">
-      {data.length > 0 ? (
-          data.map((item, index) => (
+      {reversedNotes.length > 0 ? (
+          reversedNotes.map((item, index) => (
             <MainPageNote key={index} {...item} />
           ))
         ) : (

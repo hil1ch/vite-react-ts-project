@@ -52,6 +52,8 @@ function MyTodos() {
       return <div>Error: {error.message}</div>;
     }
 
+   const reversedTodos = [...data].reverse();
+
    return (
       <div className="my__page-todos">
          <ToastContainer autoClose={2000}/>
@@ -60,8 +62,8 @@ function MyTodos() {
          </div>
          <p className="my__todos-description">Задачи, созданные мной</p>
          <div className="my__page-todos-list">
-         {data.length > 0 ? (
-            data.map(todo => (
+         {reversedTodos.length > 0 ? (
+            reversedTodos.map(todo => (
                <div className="todo__item" key={todo.id}>
                   <input type='checkbox' checked={todo.done} onChange={() => toggleTodo(todo.id, todo.done)}/>
                   {todo.text}
