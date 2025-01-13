@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
 import "./MyPageNotes.css";
 import PlaceholderImage from "../../../Shared/UI/PlaceholderNotePageImage/PlaceholderNotePageImage";
@@ -5,6 +6,7 @@ import MainPageNote from "../../../Entities/MainPageNote/MainPageNote";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDeleteNote } from "../../../Features/hooks/useDeleteNote";
+import Note from '../../Note/Note';
 
 interface MyNote {
   id?: string;
@@ -41,8 +43,9 @@ const fetchMyNotes = async (selectedTag: string, token: string | null): Promise<
 
 function MyPageNotes({ selectedTag }: MyNotesTagProps) {
   const token = localStorage.getItem('authToken');
-
-  const {handleDelete, isPending} = useDeleteNote();
+  const { handleDelete, isPending } = useDeleteNote();
+  const [selectedNote, setSelectedNote] = useState<MyNote | null>(null); // Состояние для хранения выбранной заметки
+  const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для управления модальным окном
 
   const {
       data = [],
@@ -63,6 +66,18 @@ function MyPageNotes({ selectedTag }: MyNotesTagProps) {
 
   const reversedNotes = [...data].reverse();
 
+  // Функция для открытия модального окна с заметкой
+  const handleNoteClick = (note: MyNote) => {
+    setSelectedNote(note);
+    setIsModalOpen(true);
+  };
+
+  // Функция для закрытия модального окна
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedNote(null);
+  };
+
   return (
     <div className="my__page-notes">
       <ToastContainer autoClose={2000}/>
@@ -73,12 +88,23 @@ function MyPageNotes({ selectedTag }: MyNotesTagProps) {
       <div className="my__page-notes-list">
       {reversedNotes.length > 0 ? (
           reversedNotes.map((item, index) => (
-            <MainPageNote key={index} {...item} onDelete={handleDelete} isPending={isPending}/>
+            <MainPageNote
+              key={index}
+              {...item}
+              onDelete={handleDelete}
+              isPending={isPending}
+              onClick={() => handleNoteClick(item)} // Передаем функцию для открытия модального окна
+            />
           ))
         ) : (
           <PlaceholderImage />
         )}
       </div>
+
+      {/* Модальное окно с выбранной заметкой */}
+      {isModalOpen && selectedNote && (
+        <Note closeModal={closeModal} note={selectedNote} />
+      )}
     </div>
   );
 }

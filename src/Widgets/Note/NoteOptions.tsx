@@ -3,15 +3,19 @@ import NoteAddOptions from './NoteAddOptions';
 import './NoteOptions.css';
 
 interface INoteOptionsProps {
-   openModal: (type: string) => void; // Пропс для открытия модального окна
    isNoteCreated: boolean;
+   note?: {
+     title: string;
+     text: string;
+     tag: string;
+   }; 
 }
 
-function NoteOptions({openModal, isNoteCreated}: INoteOptionsProps) {
+function NoteOptions({note, isNoteCreated}: INoteOptionsProps) {
    return (
       <div className="note__options">
-         <NoteAddOptions />        
-         <NoteActions openModal={openModal} isNoteCreated={isNoteCreated}/>
+         <NoteAddOptions note={note} /> {/* Передаем note в NoteAddOptions */}
+         <NoteActions isNoteCreated={isNoteCreated}/>
       </div>
    )
 }

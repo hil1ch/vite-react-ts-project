@@ -1,6 +1,14 @@
 import './NoteAddOptions.css';
 
-function NoteAddOptions() {
+interface NoteInnerProps {
+   note?: {
+     title: string;
+     text: string;
+     tag: string;
+   };
+ }
+
+function NoteAddOptions({note}: NoteInnerProps) {
 
    return (
       <div className='options__display'>
@@ -8,7 +16,7 @@ function NoteAddOptions() {
             <img src="src\images\add-tag.svg" alt="" className="add__tag-img"></img>
             <div className='tag__form'>
                <label className="tag__title" htmlFor="tags">Выберите тег:</label>
-               <select className="tags__list" id="tags" name="tag" required>
+               <select className="tags__list" id="tags" name="tag" defaultValue={note?.tag} required>
                   <option value="Учеба">Учеба</option>
                   <option value="Кулинария">Кулинария</option>
                   <option value="Здоровье">Здоровье</option>

@@ -1,13 +1,20 @@
 import { useState } from 'react';
-import useLocalStorage from '../../Features/hooks/useLocalStorage';
 import './NoteInner.css';
 import AlarmMessage from '../../Shared/UI/AlarmMessage/AlarmMessage';
 
+interface NoteInnerProps {
+   note?: {
+     title: string;
+     text: string;
+     tag: string;
+   };
+ }
+
 const MAX_NOTE_TITLE_LENGTH = 30;
 
-function NoteInner() {
-   const [noteTitle, setNoteTitle] = useLocalStorage<string>('noteTitle', '');
-   const [noteText, setNoteText] = useLocalStorage<string>('noteText', '');
+function NoteInner({note}: NoteInnerProps) {
+   const [noteTitle, setNoteTitle] = useState<string>(note?.title || '');
+   const [noteText, setNoteText] = useState<string>(note?.text || '');
    const [isTitleNoteMax, setIsTitleNoteMax] = useState<boolean>(false);
 
    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -24,6 +24,11 @@
    color: #27AE60;
 }
 
+.note__action-btn.isDisabled {
+   opacity: 0.5;
+   cursor: not-allowed;
+}
+
 .note__text-btn__delete {
    color: #EF0202;
 }

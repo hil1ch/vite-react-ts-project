@@ -9,15 +9,16 @@ interface IMainPageNoteProps {
    tag: string;
    onDelete: (id: string) => void;
    isPending: boolean;
+   onClick: () => void; // Пропс для обработки клика
  }
  
- function MainPageNote({ id, text, title, userId, tag, onDelete, isPending }: IMainPageNoteProps) {
+ function MainPageNote({ id, text, title, userId, tag, onDelete, isPending, onClick }: IMainPageNoteProps) {
    return (
-     <div className="main__page-note">
+     <div className="main__page-note" onClick={onClick}>
        <div className="main__page-note__inner">
          <div className='text-and-delete'>
             <p className="note__inner-description">{text}</p>
-            <button className='delete__note' onClick={() => onDelete(id!)} disabled={isPending}>
+            <button className='delete__note' onClick={(e) => { e.stopPropagation(); onDelete(id!); }} disabled={isPending}>
                <img src='src\images\delete.svg' alt="Delete" />
             </button>
          </div>
@@ -32,7 +33,6 @@ interface IMainPageNoteProps {
              <span className="note__tag-name">{tag}</span>
            </div>
          </div>
-         
        </div>
      </div>
    );
