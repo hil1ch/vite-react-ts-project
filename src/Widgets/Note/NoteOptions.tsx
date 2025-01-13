@@ -14,7 +14,7 @@ interface INoteOptionsProps {
 function NoteOptions({note, isNoteCreated}: INoteOptionsProps) {
    return (
       <div className="note__options">
-         <NoteAddOptions note={note} /> {/* Передаем note в NoteAddOptions */}
+         <NoteAddOptions note={note} />
          <NoteActions isNoteCreated={isNoteCreated}/>
       </div>
    )

@@ -17,7 +17,7 @@ interface ICreateNoteProps {
     text: string;
     email: string;
     tag: string;
-  }; // Пропс для передачи данных заметки
+  };
 }
 
 function Note({ closeModal, note }: ICreateNoteProps) {

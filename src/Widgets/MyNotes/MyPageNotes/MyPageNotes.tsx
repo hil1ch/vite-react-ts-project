@@ -44,8 +44,8 @@ const fetchMyNotes = async (selectedTag: string, token: string | null): Promise<
 function MyPageNotes({ selectedTag }: MyNotesTagProps) {
   const token = localStorage.getItem('authToken');
   const { handleDelete, isPending } = useDeleteNote();
-  const [selectedNote, setSelectedNote] = useState<MyNote | null>(null); // Состояние для хранения выбранной заметки
-  const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для управления модальным окном
+  const [selectedNote, setSelectedNote] = useState<MyNote | null>(null); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
       data = [],
@@ -93,7 +93,7 @@ function MyPageNotes({ selectedTag }: MyNotesTagProps) {
               {...item}
               onDelete={handleDelete}
               isPending={isPending}
-              onClick={() => handleNoteClick(item)} // Передаем функцию для открытия модального окна
+              onClick={() => handleNoteClick(item)}
             />
           ))
         ) : (
